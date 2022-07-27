@@ -3,11 +3,11 @@
   <title>trino的树洞</title>
   
   
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://trinoooo.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://trinoooo.github.io/"/>
   <updated>2022-07-27T11:05:31.702Z</updated>
-  <id>http://example.com/</id>
+  <id>https://trinoooo.github.io/</id>
   
   <author>
     <name>Trino</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>新的开始</title>
-    <link href="http://example.com/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/"/>
-    <id>http://example.com/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</id>
+    <link href="https://trinoooo.github.io/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/"/>
+    <id>https://trinoooo.github.io/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</id>
     <published>2022-07-27T10:49:50.000Z</published>
     <updated>2022-07-27T11:05:31.702Z</updated>
     
@@ -31,7 +31,7 @@
     
     
     
-    <category term="开端" scheme="http://example.com/tags/%E5%BC%80%E7%AB%AF/"/>
+    <category term="开端" scheme="https://trinoooo.github.io/tags/%E5%BC%80%E7%AB%AF/"/>
     
   </entry>
   
