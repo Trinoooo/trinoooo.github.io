@@ -1,0 +1,17 @@
+recent:
+  layout: recent
+  rss: /atom.xml # npm i hexo-generator-feed
+  limit: 5 # Count of posts
+  # TOC (valid only in layout:post/wiki)
+toc:
+  layout: toc
+  list_number: false
+  min_depth: 2
+  max_depth: 5
+  # welcome
+welcome:
+  layout: markdown
+  title: 欢迎
+  content: |
+    欢迎光临小站，这是一个全新的主题，拥有精心设计的样式，保留了 Volantis 的自定义侧边栏，可以写一些公告。
+    本站主题还没开发完毕，旧的文章正在逐步迁移至新主题。
