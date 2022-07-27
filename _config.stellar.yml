@@ -11,7 +11,7 @@ open_graph:
 comments:
   service: twikoo
   twikoo:
-    envId: https://xxx # vercel函数
+    envId: twikoo-cemment-3g11ke154fc8685b # vercel函数
 widgets:
   # Recent update
   recent:
