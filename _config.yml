@@ -14,10 +14,12 @@ language:
   - en
 timezone: Asia/Shanghai
 avatar: https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/5FA1EC86-6D2B-42A9-93B4-53AED18587C8.jpeg
+favicon: https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/duck.svg
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://trinoooo.github.io/
+root: /trinoooo.github.io
 permalink: :title/
 permalink_defaults:
 pretty_urls:
