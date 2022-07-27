@@ -19,7 +19,7 @@ favicon: https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/duck.svg
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://trinoooo.github.io/
-root: /trinoooo.github.io
+root: /
 permalink: :title/
 permalink_defaults:
 pretty_urls:
