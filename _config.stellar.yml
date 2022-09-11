@@ -8,10 +8,6 @@ sidebar:
 open_graph:
   enable: true
   twitter_id: # for open_graph meta
-comments:
-  service: twikoo
-  twikoo:
-    envId: twikoo-cemment-3g11ke154fc8685b # vercel函数
 widgets:
   # Recent update
   recent:
@@ -31,3 +27,7 @@ widgets:
     content: |
       欢迎光临小站，这是一个全新的主题，拥有精心设计的样式，保留了 Volantis 的自定义侧边栏，可以写一些公告。
       本站主题还没开发完毕，旧的文章正在逐步迁移至新主题。
+# comments:
+#   service: twikoo
+#   twikoo:
+#     envId: twikoo-cemment-3g11ke154fc8685b # vercel函数

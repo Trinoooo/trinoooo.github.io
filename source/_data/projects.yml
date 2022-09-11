@@ -6,4 +6,13 @@ Specific:
     src: https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/logo-icon-light.svg
     small: 112px
     large: 240px
-  description: specific是笔者用于归档学习期间涉及到项目的一个项目集合，其下包含不同领域项目，例如搜索、信息抽取、数据分析。
+  description: 特效药（Specific）是笔者用于归档学习期间涉及到项目的一个项目集合，其下包含不同领域项目，例如搜索、信息抽取、数据分析。
+Book-Market:
+  title: Book Market
+  tags: 足迹
+  cover: true
+  logo:
+    src: https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/%E5%9B%BE%E4%B9%A6.svg
+    small: 112px
+    large: 240px
+  description: 书摊（Book Market）用于记录我的阅读足迹，或许有经历的话可以种一棵知识树哈哈
