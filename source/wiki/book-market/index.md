@@ -35,3 +35,10 @@ title: 阅读足迹
 - [《追风筝的人》](https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/%E8%BF%BD%E9%A3%8E%E7%AD%9D%E7%9A%84%E4%BA%BA.epub)
 ### 周梅森
 - [《人民的名义》](https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/%E4%BA%BA%E6%B0%91%E7%9A%84%E5%90%8D%E4%B9%89.epub)
+### 计算机相关
+- [《代码整洁之道》](https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93%20.pdf)
+- [《Go Web编程》](https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/Go%20Web%E7%BC%96%E7%A8%8B.epub)
+- [《Go程序设计语言》](https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/Go%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80.pdf)
+- [《Go语言实战》](https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E6%88%98.epub)
+- [《Redis设计与实现》](https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.epub)
+- [《Redis实战》](https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/Redis%E5%AE%9E%E6%88%98.epub)
