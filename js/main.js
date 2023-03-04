@@ -1,4 +1,4 @@
-console.log('hexo-theme-stellar:\n' + stellar.github);
+console.log('\n' + '%c Stellar v' + stellar.version + ' %c\n' + stellar.github + '\n', 'color:#e8fafe;background:#03c7fa;padding:8px;border-radius:4px', 'margin-top:8px');
 // utils
 const util = {
 
@@ -92,9 +92,16 @@ const init = {
     stellar.jQuery(() => {
       const scrollOffset = 32;
       var segs = [];
-      $("article.md :header").each(function (idx, node) {
+      $("article.md-text :header").each(function (idx, node) {
         segs.push(node)
       });
+      // 定位到激活的目录树（不如pjax体验好）
+      // const widgets = document.querySelector('.widgets')
+      // const e1 = document.querySelector('.doc-tree-link.active')
+      // const offsetTop = e1.getBoundingClientRect().top - widgets.getBoundingClientRect().top - 100
+      // if (offsetTop > 0) {
+      //   widgets.scrollBy({top: offsetTop, behavior: 'smooth'})
+      // }
       // 滚动
       $(document, window).scroll(function (e) {
         var scrollTop = $(this).scrollTop();
@@ -111,12 +118,24 @@ const init = {
           }
         }
         if (topSeg) {
-          $("#toc a.toc-link").removeClass("active")
+          $("#data-toc a.toc-link").removeClass("active")
           var link = "#" + topSeg.attr("id")
           if (link != '#undefined') {
-            $('#toc a.toc-link[href="' + encodeURI(link) + '"]').addClass("active")
+            const highlightItem = $('#data-toc a.toc-link[href="' + encodeURI(link) + '"]')
+            if (highlightItem.length > 0) {
+              highlightItem.addClass("active")
+              const e0 = document.querySelector('.widgets')
+              const e1 = document.querySelector('#data-toc a.toc-link[href="' + encodeURI(link) + '"]')
+              const offsetBottom = e1.getBoundingClientRect().bottom - e0.getBoundingClientRect().bottom + 100
+              const offsetTop = e1.getBoundingClientRect().top - e0.getBoundingClientRect().top - 64
+              if (offsetTop < 0) {
+                e0.scrollBy(0, offsetTop)
+              } else if (offsetBottom > 0) {
+                e0.scrollBy(0, offsetBottom)
+              }
+            }
           } else {
-            $('#toc a.toc-link:first').addClass("active")
+            $('#data-toc a.toc-link:first').addClass("active")
           }
         }
       })
@@ -124,7 +143,7 @@ const init = {
   },
   sidebar: () => {
     stellar.jQuery(() => {
-      $("#toc a.toc-link").click(function (e) {
+      $("#data-toc a.toc-link").click(function (e) {
         l_body.classList.remove("sidebar");
       });
     })
@@ -144,7 +163,7 @@ const init = {
    */
   registerTabsTag: function () {
     // Binding `nav-tabs` & `tab-content` by real time permalink changing.
-    document.querySelectorAll('.tabs ul.nav-tabs .tab').forEach(element => {
+    document.querySelectorAll('.tabs .nav-tabs .tab').forEach(element => {
       element.addEventListener('click', event => {
         event.preventDefault();
         // Prevent selected tab to select again.
@@ -209,25 +228,29 @@ if (stellar.plugins.lazyload) {
     false
   );
   document.addEventListener('DOMContentLoaded', function () {
-    lazyLoadInstance.update();
+    window.lazyLoadInstance?.update();
   });
 }
 
-// issuesjs
-if (stellar.plugins.sitesjs) {
-  const issues_api = document.getElementById('sites-api');
-  if (issues_api != undefined) {
-    stellar.jQuery(() => {
-      stellar.loadScript(stellar.plugins.sitesjs, { defer: true })
-    })
-  }
-}
-if (stellar.plugins.friendsjs) {
-  const issues_api = document.getElementById('friends-api');
-  if (issues_api != undefined) {
-    stellar.jQuery(() => {
-      stellar.loadScript(stellar.plugins.friendsjs, { defer: true })
-    })
+// stellar js
+if (stellar.plugins.stellar) {
+  for (let key of Object.keys(stellar.plugins.stellar)) {
+    let js = stellar.plugins.stellar[key];
+    if (key == 'linkcard') {
+      stellar.loadScript(js, { defer: true }).then(function () {
+        setCardLink(document.querySelectorAll('a.link-card[cardlink]'));
+      });
+    } else {
+      const els = document.getElementsByClassName('stellar-' + key + '-api');
+      if (els != undefined && els.length > 0) {
+        stellar.jQuery(() => {
+          stellar.loadScript(js, { defer: true });
+          if (key == 'timeline') {
+            stellar.loadScript(stellar.plugins.marked);
+          }
+        })
+      }
+    }
   }
 }
 
@@ -237,10 +260,12 @@ if (stellar.plugins.swiper) {
   if (swiper_api != undefined) {
     stellar.loadCSS(stellar.plugins.swiper.css);
     stellar.loadScript(stellar.plugins.swiper.js, { defer: true }).then(function () {
-      var swiper = new Swiper('.swiper-container', {
+      const effect = swiper_api.getAttribute('effect') || '';
+      var swiper = new Swiper('.swiper#swiper-api', {
         slidesPerView: 'auto',
         spaceBetween: 8,
         centeredSlides: true,
+        effect: effect,
         loop: true,
         pagination: {
           el: '.swiper-pagination',
@@ -296,6 +321,45 @@ if (stellar.plugins.fancybox) {
     })
   }
 }
+
+
+if (stellar.search.service) {
+  if (stellar.search.service == 'local_search') {
+    stellar.jQuery(() => {
+      stellar.loadScript('/js/search/local-search.js', { defer: true }).then(function () {
+        var $inputArea = $("input#search-input");
+        if ($inputArea.length == 0) {
+          return;
+        }
+        var $resultArea = document.querySelector("div#search-result");
+        $inputArea.focus(function() {
+          var path = stellar.search[stellar.search.service]?.path || '/search.json';
+          if (!path.startsWith('/')) {
+            path = '/' + path;
+          }
+          const filter = $inputArea.attr('data-filter') || '';
+          searchFunc(path, filter, 'search-input', 'search-result');
+        });
+        $inputArea.keydown(function(e) {
+          if (e.which == 13) {
+            e.preventDefault();
+          }
+        });
+        var observer = new MutationObserver(function(mutationsList, observer) {
+          if (mutationsList.length == 1) {
+            if (mutationsList[0].addedNodes.length) {
+              $('.search-wrapper').removeClass('noresult');
+            } else if (mutationsList[0].removedNodes.length) {
+              $('.search-wrapper').addClass('noresult');
+            }
+          }
+        });
+        observer.observe($resultArea, { childList: true });
+      });
+    })
+  }
+}
+
 
 // heti
 if (stellar.plugins.heti) {
