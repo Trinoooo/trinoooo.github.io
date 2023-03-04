@@ -109,7 +109,7 @@ theme: stellar
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:Trinoooo/blog.trino.github.io.git
+  repo: git@github.com:Trinoooo/trinoooo.github.io.git
   branch: main
 
 wiki_dir: cyber-book-market
