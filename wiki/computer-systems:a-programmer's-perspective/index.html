@@ -23,7 +23,20 @@
   <title>深入理解计算机系统：前言 - trino的树洞</title>
 
   
-  <meta name="description" content="《深入理解计算机系统》是理解计算机系统首选书目，是10余万程序员的共同选择。卡内基-梅隆、北京大学、清华大学、上海交通大学等国内外众多知名高校选用指定教材。从程序员视角全面剖析的实现细节，使读者深刻理解程序的行为，将所有计算机系统的相关知识融会贯通。">
+    <meta name="description" content="请注意：本资源来源于网络，如有侵权请联系删除 本书（简称 CS：APP）的主要读者是计算机科学家、计算机工程师，以及那些想通过学习计算机系统的内在运作而能够写出更好程序的人。我们的目的是解释所有计算机系统的本质概念，并向你展示这些概念是如何实实在在地影响应用程序的正确性、性能和实用性的。其他的系统类书籍都是从构建者的角度来写的，讲述如何实现硬件或系统软件，包括操作系统、编译器和网络接口。而本书是从">
+<meta property="og:type" content="website">
+<meta property="og:title" content="前言">
+<meta property="og:url" content="https://trinoooo.github.io/wiki/computer-systems:a-programmer's-perspective/">
+<meta property="og:site_name" content="trino的树洞">
+<meta property="og:description" content="请注意：本资源来源于网络，如有侵权请联系删除 本书（简称 CS：APP）的主要读者是计算机科学家、计算机工程师，以及那些想通过学习计算机系统的内在运作而能够写出更好程序的人。我们的目的是解释所有计算机系统的本质概念，并向你展示这些概念是如何实实在在地影响应用程序的正确性、性能和实用性的。其他的系统类书籍都是从构建者的角度来写的，讲述如何实现硬件或系统软件，包括操作系统、编译器和网络接口。而本书是从">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-04T18:28:42.675Z">
+<meta property="article:modified_time" content="2023-03-04T18:28:42.675Z">
+<meta property="article:author" content="Trino">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+  
+  
 
   <!-- feed -->
   
@@ -71,11 +84,7 @@
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/computer-systems:a-programmer's-perspective/" placeholder="在 /wiki/computer-systems:a-programmer's-perspective/ 中搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
 
 
-
-
 <widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">出版信息</span></div><div class="widget-body fs14"><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/computer-systems:a-programmer's-perspective/#start"><span class="toc-text">前言</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E8%80%85%E5%BA%94%E5%85%B7%E5%A4%87%E7%9A%84%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="toc-text">读者应具备的背景知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99C%E8%AF%AD%E8%A8%80%E5%88%9D%E5%AD%A6%E8%80%85-%E5%85%B3%E4%BA%8EC%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="toc-text">给C语言初学者 - 关于C编程语言的建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E6%AD%A4%E4%B9%A6"><span class="toc-text">如何阅读此书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E4%B9%A6%E6%A6%82%E8%BF%B0"><span class="toc-text">本书概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%89%88%E6%96%B0%E5%A2%9E%E5%86%85%E5%AE%B9"><span class="toc-text">本版新增内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E4%B9%A6%E7%9A%84%E8%B5%B7%E6%BA%90"><span class="toc-text">本书的起源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E7%BB%99%E6%8C%87%E5%AF%BC%E6%95%99%E5%B8%88%E4%BB%AC%E2%88%B6%E5%8F%AF%E4%BB%A5%E5%9F%BA%E4%BA%8E%E6%9C%AC%E4%B9%A6%E7%9A%84%E8%AF%BE%E7%A8%8B"><span class="toc-text">写给指导教师们∶可以基于本书的课程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E7%BB%99%E6%8C%87%E5%AF%BC%E6%95%99%E5%B8%88%E4%BB%AC%E2%88%B6%E7%BB%8F%E8%BF%87%E8%AF%BE%E5%A0%82%E9%AA%8C%E8%AF%81%E7%9A%84%E5%AE%9E%E9%AA%8C%E7%BB%83%E4%B9%A0"><span class="toc-text">写给指导教师们∶经过课堂验证的实验练习</span></a></li></ol></div></div><div class="widget-header cap dis-select"><span class="name">第一章 计算机系统漫游</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/computer-systems:a-programmer's-perspective/chapter_01"><span class="toc-text">写在前面</span></a></div></div></widget>
-
-
 
 <widget class="widget-wrapper related"><div class="widget-header cap theme dis-select"><span class="name">更多计算机</span></div><div class="widget-body related-posts"><a class="item wiki" href="/wiki/computer-network/"><span class="title">计算机网络</span><span class="excerpt">本书是当前世界上最为流行的计算机网络教科书之一，采用了作者独创的自顶向下的方法来讲授计算机网络的原理及其协议，即从应用层协议开始沿协议栈向下讲解，强调应用层范例和应用编程接口，使读者尽快进入每天使用的应用程序环境之中进行学习和“创造”。本书的讲解以因特网为例，学以致用；注重教学法，深入浅出地重点讲解计算机网络的基本原理。</span></a></div></widget>
 </div>
