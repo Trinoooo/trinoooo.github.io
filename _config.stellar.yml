@@ -2,11 +2,11 @@ sidebar:
   logo:
     title: Trino的树洞
   menu:
-    post: "[主页](/)"
-    wiki: "[项目](/wiki/)"
+    post: "[文章](/)"
+    wiki: "[赛博书摊](/cyber-book-market/)"
     about: "[关于](/about/)"
 open_graph:
-  enable: true
+  enable: false
   twitter_id: # for open_graph meta
 widgets:
   # Recent update
@@ -31,3 +31,6 @@ widgets:
 #   service: twikoo
 #   twikoo:
 #     envId: twikoo-cemment-3g11ke154fc8685b # vercel函数
+style:
+  font-family:
+    body: '"Noto Serif SC", serif'

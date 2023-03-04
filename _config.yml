@@ -110,4 +110,11 @@ theme: stellar
 deploy:
   type: git
   repo: git@github.com:Trinoooo/blog.trino.github.io.git
-  branch: gh-page
+  branch: main
+
+wiki_dir: cyber-book-market
+
+inject:
+  head:
+    - <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;500&display=swap" rel="stylesheet">
+  script:

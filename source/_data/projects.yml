@@ -1,18 +1,14 @@
-Specific:
-  title: Specific
-  tags: 玩具项目
-  cover: true
-  logo:
-    src: https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/logo-icon-light.svg
-    small: 112px
-    large: 240px
-  description: 特效药（Specific）是笔者用于归档学习期间涉及到项目的一个项目集合，其下包含不同领域项目，例如搜索、信息抽取、数据分析。
-Book-Market:
-  title: Book Market
-  tags: 足迹
-  cover: true
-  logo:
-    src: https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/%E5%9B%BE%E4%B9%A6.svg
-    small: 112px
-    large: 240px
-  description: 书摊（Book Market）用于记录我的阅读足迹，如果有精力的话或许可以种一棵知识树。
+深入理解计算机系统:
+  title: 深入理解计算机系统
+  tags: 计算机
+  sections:
+    '出版信息': [0,0]
+    '第一章 计算机系统漫游': [1,100]
+  description: 《深入理解计算机系统》是理解计算机系统首选书目，是10余万程序员的共同选择。卡内基-梅隆、北京大学、清华大学、上海交通大学等国内外众多知名高校选用指定教材。从程序员视角全面剖析的实现细节，使读者深刻理解程序的行为，将所有计算机系统的相关知识融会贯通。
+计算机网络:
+  title: 计算机网络
+  tags: 计算机
+  description: 本书是当前世界上最为流行的计算机网络教科书之一，采用了作者独创的自顶向下的方法来讲授计算机网络的原理及其协议，即从应用层协议开始沿协议栈向下讲解，强调应用层范例和应用编程接口，使读者尽快进入每天使用的应用程序环境之中进行学习和“创造”。本书的讲解以因特网为例，学以致用；注重教学法，深入浅出地重点讲解计算机网络的基本原理。
+仓库:
+  title: 仓库
+  description: 实现书籍持久化存储

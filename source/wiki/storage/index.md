@@ -1,9 +1,8 @@
 ---
 layout: wiki  # 使用wiki布局模板
-wiki: Book-Market # 这是项目名
-title: 阅读足迹
+wiki: 仓库 # 这是项目名
 ---
-{% note color:yellow 温馨提示：点击链接即可下载 %}
+{% note color:yellow 请注意：本资源来源于网络，如有侵权请联系删除 %}
 ### 都梁
 - [《亮剑》](https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/%E9%83%BD%E6%A2%81%E5%AE%B6%E5%9B%BD%E4%BA%94%E9%83%A8%E6%9B%B2.epub)
 - [《血色浪漫》](https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/%E9%83%BD%E6%A2%81%E5%AE%B6%E5%9B%BD%E4%BA%94%E9%83%A8%E6%9B%B2.epub)
