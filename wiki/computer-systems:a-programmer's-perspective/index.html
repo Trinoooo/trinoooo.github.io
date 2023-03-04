@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.18.5">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>深入理解计算机系统：前言 - trino的树洞</title>
+
+  
+  <meta name="description" content="《深入理解计算机系统》是理解计算机系统首选书目，是10余万程序员的共同选择。卡内基-梅隆、北京大学、清华大学、上海交通大学等国内外众多知名高校选用指定教材。从程序员视角全面剖析的实现细节，使读者深刻理解程序的行为，将所有计算机系统的相关知识融会贯通。">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="trino的树洞" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+    <link rel="shortcut icon" href="https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/duck.svg">
+  
+
+  
+
+  
+
+
+  
+    
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;500&display=swap" rel="stylesheet">
+    
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='wiki'>
+    
+
+  
+
+
+
+
+<div class="widgets"><widget class="widget-wrapper logo-wrap wiki"><div class="widget-body"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/cyber-book-market"><svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>所有项目</a><a class="title" href="/wiki/computer-systems:a-programmer's-perspective/"><div class="main" ff="title">深入理解计算机系统</div></a></div></widget>
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/computer-systems:a-programmer's-perspective/" placeholder="在 /wiki/computer-systems:a-programmer's-perspective/ 中搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+
+
+
+
+<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">出版信息</span></div><div class="widget-body fs14"><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/computer-systems:a-programmer's-perspective/#start"><span class="toc-text">前言</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E8%80%85%E5%BA%94%E5%85%B7%E5%A4%87%E7%9A%84%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="toc-text">读者应具备的背景知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99C%E8%AF%AD%E8%A8%80%E5%88%9D%E5%AD%A6%E8%80%85-%E5%85%B3%E4%BA%8EC%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="toc-text">给C语言初学者 - 关于C编程语言的建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E6%AD%A4%E4%B9%A6"><span class="toc-text">如何阅读此书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E4%B9%A6%E6%A6%82%E8%BF%B0"><span class="toc-text">本书概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%89%88%E6%96%B0%E5%A2%9E%E5%86%85%E5%AE%B9"><span class="toc-text">本版新增内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E4%B9%A6%E7%9A%84%E8%B5%B7%E6%BA%90"><span class="toc-text">本书的起源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E7%BB%99%E6%8C%87%E5%AF%BC%E6%95%99%E5%B8%88%E4%BB%AC%E2%88%B6%E5%8F%AF%E4%BB%A5%E5%9F%BA%E4%BA%8E%E6%9C%AC%E4%B9%A6%E7%9A%84%E8%AF%BE%E7%A8%8B"><span class="toc-text">写给指导教师们∶可以基于本书的课程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E7%BB%99%E6%8C%87%E5%AF%BC%E6%95%99%E5%B8%88%E4%BB%AC%E2%88%B6%E7%BB%8F%E8%BF%87%E8%AF%BE%E5%A0%82%E9%AA%8C%E8%AF%81%E7%9A%84%E5%AE%9E%E9%AA%8C%E7%BB%83%E4%B9%A0"><span class="toc-text">写给指导教师们∶经过课堂验证的实验练习</span></a></li></ol></div></div><div class="widget-header cap dis-select"><span class="name">第一章 计算机系统漫游</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/computer-systems:a-programmer's-perspective/chapter_01"><span class="toc-text">写在前面</span></a></div></div></widget>
+
+
+
+<widget class="widget-wrapper related"><div class="widget-header cap theme dis-select"><span class="name">更多计算机</span></div><div class="widget-body related-posts"><a class="item wiki" href="/wiki/computer-network/"><span class="title">计算机网络</span><span class="excerpt">本书是当前世界上最为流行的计算机网络教科书之一，采用了作者独创的自顶向下的方法来讲授计算机网络的原理及其协议，即从应用层协议开始沿协议栈向下讲解，强调应用层范例和应用编程接口，使读者尽快进入每天使用的应用程序环境之中进行学习和“创造”。本书的讲解以因特网为例，学以致用；注重教学法，深入浅出地重点讲解计算机网络的基本原理。</span></a></div></widget>
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+  
+  
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/cyber-book-market/">赛博书摊</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/computer-systems:a-programmer's-perspective/">深入理解计算机系统</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-03-04T18:28:42.675Z">2023-03-05</time></div></div>
+
+  <article class='md-text content wiki'>
+  <h1 class="article-title"><span>前言</span></h1>
+  <div class="tag-plugin note" color="yellow"><div class="body"><p>请注意：本资源来源于网络，如有侵权请联系删除</p></div></div>
+<p>本书（简称 CS：APP）的主要读者是计算机科学家、计算机工程师，以及那些想通过学习计算机系统的内在运作而能够写出更好程序的人。<br><br>我们的目的是解释所有计算机系统的本质概念，并向你展示这些概念是如何实实在在地影响应用程序的正确性、性能和实用性的。其他的系统类书籍都是从构建者的角度来写的，讲述如何实现硬件或系统软件，包括操作系统、编译器和网络接口。而本书是从程序员的角度来写的，讲述应用程序员如何能够利用系统知识来编写出更好的程序。当然，学习一个计算机系统应该做些什么，是学习如何构建一个计算机系统的很好的出发点，所以，对于希望继续学习系统软硬件实现的人来说，本书也是一本很有价值的介绍性读物。大多数系统书籍还倾向于重点关注系统的某一个方面，比如：硬件架构、操作系统、编译器或者网络。本书则以程序员的视角统一覆盖了上述所有方面的内容。<br><br>如果你研究和领会了这本书里的概念，你将开始成为极少数的”牛人”，这些”牛人”知道事情是如何运作的，也知道当事情出现故障时如何修复。你写的程序将能够更好地利用操作系统和系统软件提供的功能，对各种操作条件和运行时参数都能正确操作，运行起来更快，并能避免出现使程序容易受到网络攻击的缺陷。同时，你也要做好更深入探究的准备，研究像编译器、计算机体系结构、操作系统、嵌入式系统、网络互联和网络安全这样的高级题目。</p>
+<h2 id="读者应具备的背景知识"><a href="#读者应具备的背景知识" class="headerlink" title="读者应具备的背景知识"></a>读者应具备的背景知识</h2><p>本书的重点是执行 x86-64 机器代码的系统。对英特尔及其竞争对手而言，x86-64 是他们自 1978 年起，以8086 微处理器为代表，不断进化的最新成果。按照英特尔微处理器产品线的命名规则，这类微处理器俗称为 “x86”。随着半导体技术的演进，单芯片上集成了更多的晶体管，这些处理器的计算能力和内存容量有了很大的增长。在这个过程中，它们从处理 16 位字，发展到引人 IA32 处理器处理 32 位字，再到最近的 x86-64 处理 64 位字。<br><br>我们考虑的是这些机器如何在 Linux 操作系统上运行 C 语言程序。Linux 是众多继承自最初由贝尔实验室开发的 Unix 的操作系统中的一种。这类操作系统的其他成员包括 Solaris、FreeBSD 和 Mac OSX。近年来，由于 Posix 和标准 Unix 规范的标准化努力，这些操作系统保持了高度兼容性。因此，本书内容几乎直接适用于这些“类 Unix”操作系统。<br><br>文中包含大量已在 Linux 系统上编译和运行过的程序示例。我们假设你能访问一台这样的机器，并且能够登录，做一些诸如切换目录之类的简单操作。如果你的计算机运行的是 Microsoft Windows 系统，我们建议你选择安装一个虚拟机环境（例如 VirtualBox 或者 VMWare），以便为一种操作系统（客户 OS）编写的程序能在另一种系统（宿主 OS）上运行。<br><br>我们还假设你对 C 和 C++ 有一定的了解。如果你以前只有 Java 经验，那么你需要付出更多的努力来完成这种转换，不过我们也会帮助你。Java 和 C 有相似的语法和控制语句。不过，有一些 C 语言的特性（特别是指针、显式的动态内存分配和格式化 I&#x2F;O）在 Java 中都是没有的。所幸的是，C 是一个较小的语言，在Brian Kernighan和Dennis Ritchie经典的”K8.R”文献中得到了清晰优美的描述【61】。无论你的编程背景如何，都应该考虑将 K&amp;R 作为个人系统藏书的一部分。如果你只有使用解释性语言的经验，如 Python、Ruby 或 Perl，那么在使用本书之前，需要花费一些时间来学习 C。<br><br>本书的前几章揭示了C语言程序和它们相对应的机器语言程序之间的交互作用。机器语言示例都是用运行在 x86-64 处理器上的 GNUGCC 编译器生成的。我们不需要你以前有任何硬件、机器语言或是汇编语言编程的经验。</p>
+<h3 id="给C语言初学者-关于C编程语言的建议"><a href="#给C语言初学者-关于C编程语言的建议" class="headerlink" title="给C语言初学者 - 关于C编程语言的建议"></a>给C语言初学者 - 关于C编程语言的建议</h3><p>为了帮助C语言编程背景薄弱（或全无背景）的读者，我们在书中加入了这样一些专门的注释来突出 C 中一些特别重要的特性。我们假设你熟悉 C++ 或 Java。</p>
+<h2 id="如何阅读此书"><a href="#如何阅读此书" class="headerlink" title="如何阅读此书"></a>如何阅读此书</h2><p>从程序员的角度学习计算机系统是如何工作的会非常有趣，主要是因为你可以主动地做这件事情。无论何时你学到一些新的东西，都可以马上试验并且直接看到运行结果。事实上，我们相信学习系统的唯一方法就是做（do）系统，即在真正的系统上解决具体的问题，或是编写和运行程序。<br><br>这个主题观念贯穿全书。当引入一个新概念时，将会有一个或多个练习题紧随其后，你应该马上做一做来检验你的理解。这些练习题的解答在每章的末尾。当你阅读时，尝试自己来解答每个问题，然后再查阅答案，看自已的答案是否正确。除第 1 章外，每章后面都有难度不同的家庭作业。对每个家庭作业题，我们标注了难度级别：</p>
+<ul>
+<li>① 只需要几分钟。几乎或完全不需要编程。</li>
+<li>② 可能需要将近 20 分钟。通常包括编写和测试一些代码。（许多都源自我们在考试中出的题目。）</li>
+<li>③ 需要很大的努力，也许是 1～2 个小时。一般包括编写和测试大量的代码。</li>
+<li>④ 一个实验作业，需要将近 10 个小时。</li>
+</ul>
+<p>文中每段代码示例都是由经过 GCC 编译的 C 程序直接生成并在 Linux 系统上进行了测试，没有任何人为的改动。当然，你的系统上 GCC 的版本可能不同，或者根本就是另外一种编译器，那么可能生成不一样的机器代码，但是整体行为表现应该是一样的。所有的源程序代码都可以从 csapp.cs.cmu.edu 上 的CS：APP 主页上获取。在本书中，源程序的文件名列在两条水平线的右边，水平线之间是格式化的代码。比如，图1中的程序能在 code&#x2F;intro&#x2F; 目录下的 hello.c 文件中找到。当遇到这些示例程序时，我们鼓励你在自己的系统上试着运行它们。<br><br>为了避免本书体积过大、内容过多，我们添加了许多网络旁注（Web aside），包括一些对本书主要内容的补充资料。本书中用 CHAP：TOP 这样的标记形式来引用这些旁注，这里 CHAP 是该章主题的缩写编码，而 TOP 是涉及的话题的缩写编码。例如，网络旁注 DATA：BOOL 包含对第 2 章中数据表示里面有关布尔代数内容的补充资料；而网络旁注 ARCH：VLOG 包含的是用 Verilog 硬件描述语言进行处理器设计的资料，是对第 4 章中处理器设计部分的补充。所有的网络旁注都可以从 CS：APP 的主页上获取。</p>
+<div class="tag-plugin note" color="light"><div class="title">旁注-什么是旁注</div><div class="body"><p>在整本书中，你将会遇到很多以这种形式出现的旁注。旁注是附加说明，能使你对当前讨论的主题多一些了解。旁注可以有很多用处。一些是小的历史故事。例如，C 语言、Linux 和 Internet 是从何而来的？有些旁注则是用来澄清学生们经常感到疑感的问题。例如，高速缓存的行、组和块有什么区别？还有些旁注给出了一些现实世界的例子。例如，一个浮点错误怎么毁掉了法国的一枚火箭，或是给出市面上出售的一个磁盘驱动器的几何和运行参数。最后，还有一些旁注仅仅就是一些有趣的内容，例如，什么是“hoinky”？</p></div></div>
+<h2 id="本书概述"><a href="#本书概述" class="headerlink" title="本书概述"></a>本书概述</h2><p>本书由 12 章组成，旨在阐述计算机系统的核心概念。内容概述如下：</p>
+<ul>
+<li><strong>第1章</strong>：计算机系统漫游。 这一章通过研究 “hello, world” 这个简单程序的生命周期，介绍计算机系统的主要概念和主题。</li>
+<li><strong>第2章</strong>：信息的表示和处理。 我们讲述了计算机的算术运算，重点描述了会对程序员有 影响的无符号数和数的补码表示的特性。我们考虑数字是如何表示的，以及由此确定对于一个给定的字长，其可能编码值的范围。我们探讨有符号和无符号数字之间类型转换的效果，还阐述算术运算的数学特性。菜鸟级程序员经常很惊奇地了解到（用补码表示的）两个正数的和或者积可能为负。另一方面，补码的算术运算满足很多整数运算的代数特性，因此，编译器可以很安全地把一个常量乘法转化为一系列的移位和加法。我们用C 语言的位级操作来说明布尔代数的原理和应用。我们从两个方面讲述了 IEEE 标准的浮点格式：一是如何用它来表示数值，一是浮点运算的数学属性。<br>对计算机的算术运算有深刻的理解是写出可靠程序的关键。比如，程序员和编译器不能用表达式（x-y&lt;0）来替代（x&lt;y），因为前者可能会产生溢出。甚至也不能用表达式（-y&lt;-x）来替代，因为在补码表示中负数和正数的范围是不对称的。算术溢出是造成程序错误和安全漏洞的一个常见根源，然而很少有书从程序员的角度来讲述计算机算术运算的特性。</li>
+<li><strong>第3章</strong>：程序的机器级表示。 我们教读者如何阅读由 C 编译器生成的 x86-64 机器代码。我们说明为不同控制结构（比如条件、循环和开关语句）生成的基本指令模式。我们还讲述过程的实现，包括栈分配、寄存器使用惯例和参数传递。我们讨论不同数据结构（如结构、联合和数组）的分配和访问方式。我们还说明实现整数和浮点数算术运算的指令。我们还以分析程序在机器级的样子作为途径，来理解常见的代码安全漏洞（例如缓冲区溢出），以及理解程序员、编译器和操作系统可以采取的减轻这些威胁的措施。学习本章的概念能够帮助读者成为更好的程序员，因为你们懂得程序在机器上是如何表示的。另外一个好处就在于读者会对指针有非常全面而具体的理解。</li>
+<li><strong>第4章</strong>：处理器体系结构。 这一章讲述基本的组合和时序逻辑元素，并展示这些元素如何在数据通路中组合到一起，来执行 x86-64 指令集的一个称为 “Y86-64” 的简化子集。我们从设计单时钟周期数据通路开始。这个设计概念上非常简单，但是运行速度不会太快。然后我们引入流水线的思想，将处理一条指令所需要的不同步骤实现为独立的阶段。这个设计中，在任何时刻，每个阶段都可以处理不同的指令。我们的五阶段处理器流水线更加实用。本章中处理器设计的控制逻辑是用一种称为 HCL 的简单硬件描述语言来描述的。用 HCL 写的硬件设计能够编译和链接到本书提供的模拟器中，还可以根据这些设计生成 Verilog 描述，它适合合成到实际可以运行的硬件上去。</li>
+<li><strong>第5章</strong>：优化程序性能。 在这一章里，我们介绍了许多提高代码性能的技术，主要思想就是让程序员通过使编译器能够生成更有效的机器代码来学习编写 C 代码。我们一开始介绍的是减少程序需要做的工作的变换，这些是在任何机器上写任何程序时都应该遵循的。然后讲的是增加生成的机器代码中指令级并行度的变换，因而提高了程序在现代“超标量”处理器上的性能。为了解释这些变换行之有效的原理，我们介绍了一个简单的操作模型，它描述了现代乱序处理器是如何工作的，然后给出了如何根据一个程序的图形化表示中的关键路径来测量一个程序可能的性能。你会惊讶于对 C 代码做一些简单的变换能给程序带来多大的速度提升。</li>
+<li><strong>第6章</strong>：存储器层次结构。 对应用程序员来说，存储器系统是计算机系统中最直接可见的部分之一。到目前为止，读者一直认同这样一个存储器系统概念模型，认为它是一个有一致访问时间的线性数组。实际上，存储器系统是一个由不同容量、造价和访问时间的存储设备组成的层次结构。我们讲述不同类型的随机存取存储器（RAM）和只读存储器（ROM），以及磁盘和✦固态硬盘✦的几何形状和组织构造。我们描述这些存储设备是如何放置在层次结构中的，讲述访问局部性是如何使这种层次结构成为可能的。我们通过一个独特的观点使这些理论具体化，那就是将存储器系统视为一个“存储器山”，山脊是时间局部性，而斜坡是空间局部性。最后，我们向读者阐述如何通过改善程序的时间局部性和空间局部性来提高应用程序的性能。<div class="tag-plugin note" color="light"><div class="body"><p>固态硬盘：直译应为固态驱动器，但固态硬盘一词已经被大家接受，所以沿用。——译者注</p></div></div></li>
+<li><strong>第7章</strong>：链接。 本章讲述静态和动态链接，包括的概念有可重定位的和可执行的目标文件、符号解析、重定位、静态库、共享目标库、位置无关代码，以及库打桩。大多数讲述系统的书中都不讲链接，我们要讲述它是出于以下原因。第一，程序员遇到的最令人迷惑的问题中，有一些和链接时的小故障有关，尤其是对那些大型软件包来说。第二，链接器生成的目标文件是与一些像加载、虚拟内存和内存映射这样的概念相关的。</li>
+<li><strong>第8章</strong>：异常控制流。 在本书的这个部分，我们通过介绍异常控制流（即除正常分支和过程调用以外的控制流的变化）的一般概念，打破单一程序的模型。我们给出存在于系统所有层次的异常控制流的例子，从底层的硬件异常和中断，到并发进程的上下文切换，到由于接收 Linux 信号引起的控制流突变，到 C 语言中破坏栈原则的非本地跳转。 在这一章，我们介绍进程的基本概念，进程是对一个正在执行的程序的一种抽象。读者会学习进程是如何工作的，以及如何在应用程序中创建和操纵进程。我们会展示应用程序员如何通过 Linux 系统调用来使用多个进程。学完本章之后，读者就能够编写带作业控制的 Linux shell 了。同时，这里也会向读者初步展示程序的并发执行会引起不确定的行为。</li>
+<li><strong>第9章</strong>：虚拟内存。我们讲述虚拟内存系统是希望读者对它是如何工作的以及它的特性有所了解。我们想让读者了解为什么不同的并发进程各自都有一个完全相同的地址范围，能共享某些页，而又独占另外一些页。我们还讲了一些管理和操纵虚拟内存的问题。特别地，我们讨论了存储分配操作，就像标准库的 malloc 和 free 操作。阐述这些内容是出于下面几个目的。它加强了这样一个概念，那就是虚拟内存空间只是一个字节数组，程序可以把它划分成不同的存储单元。它可以帮助读者理解当程序包含存储泄漏和非法指针引用等内存引用错误时的后果。最后，许多应用程序员编写自己的优化了的存储分配操作来满足应用程序的需要和特性。这一章比其他任何一章都更能展现将计算机系统中的硬件和软件结合起来阐述的优点。而传统的计算机体系结构和操作系统书籍都只讲述虚拟内存的某一方面。</li>
+<li><strong>第10章</strong>：系统级 I&#x2F;O。 我们讲述 Unix I&#x2F;O 的基本概念，例如文件和描述符。我们描述如何共享文件，I&#x2F;O 重定向是如何工作的，还有如何访问文件的元数据。我们还开发了一个健壮的带缓冲区的 I&#x2F;O 包，可以正确处理一种称为 short counts 的奇特行为，也就是库函数只读取一部分的输入数据。我们阐述 C 的标准 I&#x2F;O 库，以及它与 Linux I&#x2F;O 的关系，重点谈到标准 I&#x2F;O 的局限性，这些局限性使之不适合网络编程。总的来说，本章的主题是后面两章——网络和并发编程的基础。</li>
+<li><strong>第11章</strong>：网络编程。 对编程而言，网络是非常有趣的 I&#x2F;O 设备，它将许多我们前面文中学习的概念（比如进程、信号、字节顺序、内存映射和动态内存分配）联系在一起。网络程序还为下一章的主题——并发，提供了一个很令人信服的上下文。本章只是网络编程的一个很小的部分，使读者能够编写一个简单的 Web 服务器。我们还讲述位于所有网络程序底层的客户端-服务器模型。我们展现了一个程序员对 Internet 的观点，并且教读者如何用套接字接口来编写 Internet 客户端和服务器。最后，我们介绍超文本传输协议（HTTP），并开发了一个简单的迭代式 Web 服务器。</li>
+<li><strong>第12章</strong>：并发编程。 这一章以 Internet 服务器设计为例介绍了并发编程。我们比较对照了三种编写并发程序的基本机制（进程、I&#x2F;O多路复用和线程），并且展示如何用它们来建造并发Internet服务器。我们探讨了用 P、V 信号量操作来实现同步、线程安全和可重入、竞争条件以及死锁等的基本原则。对大多数服务器应用来说，写并发代码都是很关键的。我们还讲述了线程级编程的使用方法，用这种方法来表达应用程序中的并行性，使得程序在多核处理器上能执行得更快。使用所有的核解决同一个计算问题需要很小心谨慎地协调并发线程，既要保证正确性，又要争取获得高性能。</li>
+</ul>
+<h2 id="本版新增内容"><a href="#本版新增内容" class="headerlink" title="本版新增内容"></a>本版新增内容</h2><p>本书的第 1 版于 2003 年出版，第 2 版在 2011 年出版。考虑到计算机技术发展如此迅速，这本书的内容还算是保持得很好。事实证明 Intel x86 的机器上运行 Linux （以及相关操作系统），加上采用 C 语言编程，是一种能够涵盖当今许多系统的组合。然而，硬件技术、编译器和程序库接口的变化，以及很多教师教授这些内容的经验，都促使我们做了大量的修改。<br><br>第 2 版以来的最大整体变化是，我们的介绍从以 IA32 和 x86-64 为基础，转变为完全以 x86-64 为基础。这种重心的转移影响了很多章节的内容。下面列出一些明显的变化∶</p>
+<ul>
+<li><strong>第1章。</strong>我们将第 5 章对 Amdahl 定理的讨论移到了本章。</li>
+<li><strong>第2章。</strong>读者和评论家的反馈是一致的，本章的一些内容有点令人不知所措。因此，我们澄清了一些知识点，用更加数学的方式来描述，使得这些内容更容易理解。这使得读者能先略过数学细节，获得高层次的总体概念，然后回过头来进行更细致深入的阅读。</li>
+<li><strong>第3章。</strong>我们将之前基于 IA32 和 x86-64 的表现形式转换为完全基于 x86-64 ，还更新了近期版本 GCC 产生的代码。其结果是大量的重写工作，包括修改了一些概念提出的顺序。同时，我们还首次介绍了对处理浮点数据的程序的机器级支持。由于历史原因，我们给出了一个网络旁注描述 IA32 机器码。</li>
+<li><strong>第4章。</strong>我们将之前基于 32 位架构的处理器设计修改为支持 64 位字和操作的设计。</li>
+<li><strong>第5章。</strong>我们更新了内容以反映最近几代 x86-64 处理器的性能。通过引入更多的功能单元和更复杂的控制逻辑，我们开发的基于程序数据流表示的程序性能模型，其性能预测变得 比之前更加可靠。</li>
+<li><strong>第6章。</strong>我们对内容进行了更新，以反映更多的近期技术。</li>
+<li><strong>第7章。</strong>针对 x86-64，我们重写了本章，扩充了关于用 GOT 和 PLT 创建位置无关代码的讨论，新增了一节描述更加强大的链接技术，比如库打桩。</li>
+<li><strong>第8章。</strong>我们增加了对信号处理程序更细致的描述，包括异步信号安全的函数，编写信号处理程序的具体指导原则，以及用 sigsuspend 等待处理程序。</li>
+<li><strong>第9章。</strong>本章变化不大。</li>
+<li><strong>第10章。</strong>我们新增了一节说明文件和文件的层次结构，除此之外，本章的变化 不大。</li>
+<li><strong>第11章。</strong>我们介绍了采用最新 getaddrinfo 和 getnameinfo 函数的、与协议无关和线程安全的网络编程，取代过时的、不可重入的 gethostbyname 和 gethost-byaddr 函数。</li>
+<li><strong>第12章。</strong>我们扩充了利用线程级并行性使得程序在多核机器上更快运行的内容。</li>
+</ul>
+<p>此外，我们还增加和修改了很多练习题和家庭作业。</p>
+<h2 id="本书的起源"><a href="#本书的起源" class="headerlink" title="本书的起源"></a>本书的起源</h2><p>本书起源于 1998 年秋季，我们在卡内基-梅隆（CMU）大学开设的一门编号为 15-213 的介绍性课程∶计算机系统导论（Introduction to Computer System，ICS）【14】。从那以后，每学期都开设了 ICS 这门课程，每学期有超过 400 名学生上课，这些学生从本科二年级到硕士研究生都有，所学专业也很广泛。这门课程是卡内基-梅隆大学计算机科学系（CS）以及电子和计算机工程系（ECE）所有本科生的必修课，也是 CS 和 ECE 大多数高级系统课程的先行必修课。<br><br>ICS 这门课程的宗旨是用一种不同的方式向学生介绍计算机。因为，我们的学生中几乎没有人有机会亲自去构造一个计算机系统。另一方面，大多数学生，甚至包括所有的计算机科学家和计算机工程师，也需要日常使用计算机和编写计算机程序。所以我们决定从程序员的角度来讲解系统，并采用这样的原则过滤要讲述的内容∶我们只讨论那些影响用户级 C 语言程序的性能、正确性或实用性的主题。<br><br>比如，我们排除了诸如硬件加法器和总线设计这样的主题。虽然我们谈及了机器语言，但是重点并不在于如何手工编写汇编语言，而是关注 C 语言编译器是如何将 C 语言的结构翻译成机器代码的，包括编译器是如何翻译指针、循环、过程调用以及开关（switch）语句的。更进一步地，我们将更广泛和全盘地看待系统，包括硬件和系统软件，涵盖了包括链接、加载、进程、信号、性能优化、虚拟内存、I&#x2F;O 以及网络与并发编程等在内的主题。<br><br>这种做法使得我们讲授 ICS 课程的方式对学生来讲既实用、具体，还能动手操作，同时也非常能调动学生的积极性。很快地，我们收到来自学生和教职工非常热烈而积极的反响，我们意识到卡内基-梅隆大学以外的其他人也可以从我们的方法中获益。因此，这本书从 ICS 课程的笔记中应运而生了，而现在我们对它做了修改，使之能够反映科学技术以及计算机系统实现中的变化和进步。<br><br>通过本书的多个版本和多种语言译本， ICS 和许多相似课程已经成为世界范围内数百所高校的计算机科学和计算机工程课程的一部分。</p>
+<h2 id="写给指导教师们∶可以基于本书的课程"><a href="#写给指导教师们∶可以基于本书的课程" class="headerlink" title="写给指导教师们∶可以基于本书的课程"></a>写给指导教师们∶可以基于本书的课程</h2><p>指导教师可以使用本书来讲授五种不同类型的系统课程。具体每门课程则有赖于课程大纲的要求、个人喜好、学生的背景和能力。图中的课程从左往右越来越强调以程序员的角度来看待系统。以下是简单的描述。</p>
+<ul>
+<li><strong>ORG</strong>：一门以非传统风格讲述传统主题的计算机组成原理课程。传统的主题包括逻辑设计、处理器体系结构、汇编语言和存储器系统，然而这里更多地强调了对程序员的影响。例如，要反过来考虑数据表示对 C 语言程序的数据类型和操作的影响。又例如，对汇编代码的讲解是基于C语言编译器产生的机器代码，而不是手工编写的汇编代码。</li>
+<li><strong>ORG</strong>+：一门特别强调硬件对应用程序性能影响的 ORG 课程。和 ORG 课程相比，学生要更多地学习代码优化和改进 C 语言程序的内存性能。</li>
+<li><strong>ICS</strong>：基本的ICS课程，旨在培养一类程序员，他们能够理解硬件、操作系统和编译系统对应用程序的性能和正确性的影响。和 ORG+ 课程的一个显著不同是，本课程不涉及低层次的处理器体系结构。相反，程序员只同现代乱序处理器的高级模型打交道。ICS 课程非常适合安排到一个 10 周的小学期，如果期望步调更从容一些，也可以延长到一个 15 周的学期。</li>
+<li><strong>ICS</strong>+：在基本的 ICS 课程基础上，额外论述一些系统编程的问题，比如系统级 I&#x2F;O、网络编程和并发编程。这是卡内基-梅隆大学的一门一学期时长的课程，会讲述本书中除了低级处理器体系结构以外的所有章。</li>
+<li><strong>SP</strong>：一门系统编程课程。和 ICS+ 课程相似，但是剔除了浮点和性能优化的内容，更加强调系统编程，包括进程控制、动态链接、系统级I&#x2F;O、网络编程和并发编程。指导教师可能会想从其他渠道对某些高级主题做些补充，比如守护进程（daemon）、终端控制和 Unix IPC（进程间通信）。</li>
+</ul>
+<p>如果你希望学生更多地了解低层次的处理器体系结构，那么通过 ORG 和 ORG+ 课程可以达到目的。另一方面，如果你想将当前的计算机组成原理课程转换成 ICS 或者 ICS+ 课程，但是又对突然做这样剧烈的变化感到担心，那么你可以逐步递增转向 ICS 课程。你可以从 OGR 课程开始，它以一种非传统的方式教授传统的问题。一旦你对这些内容感到驾轻就熟了，就可以转到 ORG+，最终转到 ICS。如果学生没有 C 语言的经验（比如他们只用 Java 编写过程序），你可以花几周的时间在 C 语言上，然后再讲述 ORG 或者 ICS 课程的内容。<br><br>最后，我们认为 ORG+ 和 SP 课程适合安排为两期（两个小学期或者两个学期）。或者你可以考虑按照一期 ICS 和一期 SP 的方式来教授 ICS+ 课程。</p>
+<h2 id="写给指导教师们∶经过课堂验证的实验练习"><a href="#写给指导教师们∶经过课堂验证的实验练习" class="headerlink" title="写给指导教师们∶经过课堂验证的实验练习"></a>写给指导教师们∶经过课堂验证的实验练习</h2><p>ICS+ 课程在卡内基-梅隆大学得到了学生很高的评价。学生对这门课程的评价，中值分数一般为 5.0&#x2F;5.0，平均分数一般为 4.6&#x2F;5.0。学生们说这门课非常有趣，令人兴奋，主要就是因为相关的实验练习。这些实验练习可以从 CS∶APP 的主页上获得。下面是本书提供的一些实验的示例。</p>
+<ul>
+<li><strong>数据实验</strong>。这个实验要求学生实现简单的逻辑和算术运算函数，但是只能使用一个非常有限的C语言子集。比如，只能用位级操作来计算一个数字的绝对值。这个实验可帮助学生了解C语言数据类型的位级表示，以及数据操作的位级行为。</li>
+<li><strong>二进制炸弹实验</strong>。二进制炸弹是一个作为目标代码文件提供给学生的程序。运行时，它提示用户输入 6 个不同的字符串。如果其中的任何一个不正确，炸弹就会“爆炸”，打印出一条错误消息，并且在一个打分服务器上记录事件日志。学生必须通过对程序反汇编和逆向工程来测定应该是哪 6 个串，从而解除各自炸弹的雷管。该实验能教会学生理解汇编语言，并且强制他们学习怎样使用调试器。</li>
+<li><strong>缓冲区溢出实验</strong>。它要求学生通过利用一个缓冲区溢出漏洞，来修改一个二进制可执行文件的运行时行为。这个实验可教会学生栈的原理，并让他们了解写那种易于遭受缓冲区溢出攻击的代码的危险性。</li>
+<li><strong>体系结构实验</strong>。第 4 章的几个家庭作业能够组合成一个实验作业，在实验中，学生修改处理器的 HCL 描述，增加新的指令，修改分支预测策略，或者增加、删除旁路路径和寄存器端口。修改后的处理器能够被模拟，并通过运行自动化测试检测出大多数可能的错误。这个实验使学生能够体验处理器设计中令人激动的部分，而不需要掌握逻辑设计和硬件描述语言的完整知识。</li>
+<li><strong>性能实验</strong>。学生必须优化应用程序的核心函数（比如卷积积分或矩阵转置）的性能。这个实验可非常清晰地表明高速缓存的特性，并带给学生低级程序优化的经验。</li>
+<li><strong>cache</strong> 实验。这个实验类似于性能实验，学生编写一个通用高速缓存模拟器，并优化小型矩阵转置核心函数，以最小化对模拟的高速缓存的不命中次数。我们使用 Valgrind 为矩阵转置核心函数生成真实的地址访问记录。</li>
+<li><strong>shell实验</strong>。学生实现他们自己的带有作业控制的 Unix shell 程序，包括 Ctrl+C和 Ctrl+Z 按键，fg、bg和 jobs 命令。这是学生第一次接触并发，并且让他们对 Unix 的进程控制、信号和信号处理有清晰的了解。</li>
+<li><strong>malloc</strong> 实验。学生实现他们自己的 malloc、free 和 realloc（可选）版本。这个实验可让学生们清晰地理解数据的布局和组织，并且要求他们评估时间和空间效率的各种权衡及折中。</li>
+<li><strong>代理实验</strong>。实现一个位于浏览器和万维网其他部分之间的并行 Web 代理。这个实验向学生们揭示了 Web 客户端和服务器这样的主题，并且把课程中的许多概念联系起来，比如字节排序、文件 I&#x2F;O、进程控制、信号、信号处理、内存映射、套接字和并发。学生很高兴能够看到他们的程序在真实的 Web 浏览器和 Web 服务器之间起到的作用。</li>
+</ul>
+<p>CS∶APP的教师手册中有对实验的详细讨论，还有关于下载支持软件的说明。 </p>
+
+  
+
+
+  </article>
+  
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/computer-systems:a-programmer's-perspective/chapter_01">写在前面</a></div></section></div>
+
+  
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@anonymity</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.18.5';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.18.5';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
