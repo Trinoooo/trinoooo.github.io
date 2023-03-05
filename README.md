@@ -33,5 +33,7 @@
 ├── themes
 └── yarn.lock
 ```
+## 其他信息
+> 欢迎有兴趣的小伙伴一起维护web电子书部分
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Trinoooo/trinoooo.github.io&type=Date)](https://star-history.com/#Trinoooo/trinoooo.github.io&Date)
