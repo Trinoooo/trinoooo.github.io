@@ -7,7 +7,7 @@ toc:
   list_number: false
   min_depth: 2
   max_depth: 5
-  # welcome
+# welcome
 welcome:
   layout: markdown
   title: 欢迎
@@ -22,3 +22,9 @@ welcome:
     + 说说心里话的树洞
 
     人的记忆是短暂的，留档是对过去的记录，也是不可多得的回溯途径。坚持记录留下一条成长轨迹，相信会在未来的某个时间节点能够给予自己些许鼓励，支持我度过漫长岁月...
+
+ghuser:
+  layout: ghuser
+  username: trinoooo # your github login username
+  avatar: true # show avatar or not
+  menu: true # show menu or not

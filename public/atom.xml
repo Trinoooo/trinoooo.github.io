@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>trino的树洞</title>
+  
+  
+  <link href="https://trinoooo.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://trinoooo.github.io/"/>
+  <updated>2023-03-04T15:30:12.492Z</updated>
+  <id>https://trinoooo.github.io/</id>
+  
+  <author>
+    <name>Trino</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>新的开始</title>
+    <link href="https://trinoooo.github.io/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/"/>
+    <id>https://trinoooo.github.io/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</id>
+    <published>2022-07-27T10:49:50.000Z</published>
+    <updated>2023-03-04T15:30:12.492Z</updated>
+    
+    <content type="html"><![CDATA[<p>做点自己喜欢的事情吧</p><span id="more"></span><div class="tag-plugin quot"><p class="content" type="icon"><img class="icon prefix" src="https://bu.dusays.com/2022/10/24/63567d3e07da3.png" />2022 年 7 月 27 日</p></div><div class="tag-plugin grid" ><div class="cell" index="0"></div></div>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;做点自己喜欢的事情吧&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="开端" scheme="https://trinoooo.github.io/tags/%E5%BC%80%E7%AB%AF/"/>
+    
+  </entry>
+  
+</feed>

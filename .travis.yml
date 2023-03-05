@@ -2,7 +2,6 @@ sudo: false
 language: node_js
 node_js:
   - 10 # use nodejs v10 LTS
-cache: npm
 branches:
   only:
     - main # build master branch only
@@ -18,5 +17,5 @@ deploy:
   github-token: $GH_TOKEN
   keep-history: true
   on:
-    branch: gh-page
+    branch: master
   local-dir: public

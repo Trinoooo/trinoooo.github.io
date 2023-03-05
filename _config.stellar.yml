@@ -5,28 +5,25 @@ sidebar:
     post: "[文章](/)"
     wiki: "[赛博书摊](/cyber-book-market/)"
     about: "[关于](/about/)"
+  widgets:
+    home: search, welcome, recent # for home
+    # 博客索引页
+    blog_index: search_blog, recent # for categories/tags/archives
+    # 文档索引页
+    wiki_index: search_docs, recent # for wiki
+    # 其它（404）
+    others: search, welcome, recent # for 404 and ...
+    #### 手动创建的页面 ####
+    # 文章内页
+    post: search, toc # for pages using 'layout:post'
+    # 文档内页
+    wiki: search, toc, related # for pages using 'layout:wiki'
+    # 其它 layout:page 的页面
+    page: welcome, toc, search # for custom pages using 'layout:page'
 open_graph:
-  enable: false
+  enable: true
   twitter_id: # for open_graph meta
-widgets:
-  # Recent update
-  recent:
-    layout: recent
-    rss: /atom.xml # npm i hexo-generator-feed
-    limit: 5 # Count of posts
-  # TOC (valid only in layout:post/wiki)
-  toc:
-    layout: toc
-    list_number: false
-    min_depth: 2
-    max_depth: 5
-  # welcome
-  welcome:
-    layout: markdown
-    title: 欢迎
-    content: |
-      欢迎光临小站，这是一个全新的主题，拥有精心设计的样式，保留了 Volantis 的自定义侧边栏，可以写一些公告。
-      本站主题还没开发完毕，旧的文章正在逐步迁移至新主题。
+
 # comments:
 #   service: twikoo
 #   twikoo:
