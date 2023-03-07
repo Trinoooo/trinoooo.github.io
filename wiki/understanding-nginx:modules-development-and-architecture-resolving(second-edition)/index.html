@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.18.5">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>深入理解Nginx：模块开发与架构解析：前言 - trino的树洞</title>
+
+  
+    <meta name="description" content="请注意：本资源来源于网络，如有侵权请联系删除 为什么要写这本书自第1版发行以来，笔者很欣慰得到了广大读者的认可。本书一直致力于说明开发Nginx模块的必备知识，然而由于Nginx功能繁多且性能强大，以致必须要了解的基本技能也很庞杂，而第1版成书匆忙，缺失了几个进阶的技巧描述（例如如何使用变量、slab共享内存等），因此决定在第1版的基础上进一步完善。事实上，我们总能在nginx.conf配置文件中">
+<meta property="og:type" content="website">
+<meta property="og:title" content="前言">
+<meta property="og:url" content="https://trinoooo.github.io/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/">
+<meta property="og:site_name" content="trino的树洞">
+<meta property="og:description" content="请注意：本资源来源于网络，如有侵权请联系删除 为什么要写这本书自第1版发行以来，笔者很欣慰得到了广大读者的认可。本书一直致力于说明开发Nginx模块的必备知识，然而由于Nginx功能繁多且性能强大，以致必须要了解的基本技能也很庞杂，而第1版成书匆忙，缺失了几个进阶的技巧描述（例如如何使用变量、slab共享内存等），因此决定在第1版的基础上进一步完善。事实上，我们总能在nginx.conf配置文件中">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-07T08:03:15.284Z">
+<meta property="article:modified_time" content="2023-03-07T08:03:15.284Z">
+<meta property="article:author" content="Trino">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="trino的树洞" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+    <link rel="shortcut icon" href="https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/duck.svg">
+  
+
+  
+
+  
+
+
+  
+    
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;500&display=swap" rel="stylesheet">
+    
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='wiki'>
+    
+
+  
+
+
+
+
+<div class="widgets"><widget class="widget-wrapper logo-wrap wiki"><div class="widget-body"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/cyber-book-market"><svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>所有项目</a><a class="title" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/"><div class="main" ff="title">深入理解Nginx：模块开发与架构解析</div></a></div></widget>
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/" placeholder="在 /wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/ 中搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">出版信息</span></div><div class="widget-body fs14"><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/#start"><span class="toc-text">前言</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%86%99%E8%BF%99%E6%9C%AC%E4%B9%A6"><span class="toc-text">为什么要写这本书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E8%80%85%E5%AF%B9%E8%B1%A1"><span class="toc-text">读者对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="toc-text">背景知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E6%9C%AC%E4%B9%A6"><span class="toc-text">如何阅读本书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8B%98%E8%AF%AF%E4%B8%8E%E6%94%AF%E6%8C%81"><span class="toc-text">勘误与支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%B4%E8%B0%A2"><span class="toc-text">致谢</span></a></li></ol></div></div><div class="widget-header cap dis-select"><span class="name">第一部分 Nginx能帮我们做什么</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/section_01"><span class="toc-text">写在前面</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/chapter_01"><span class="toc-text">第一章 研究Nginx前的准备工作</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/chapter_02"><span class="toc-text">第二章 Nginx的配置</span></a></div></div></widget>
+
+<widget class="widget-wrapper related"><div class="widget-header cap theme dis-select"><span class="name">更多计算机</span></div><div class="widget-body related-posts"><a class="item wiki" href="/wiki/computer-systems:a-programmer's-perspective/"><span class="title">深入理解计算机系统</span><span class="excerpt">《深入理解计算机系统》是理解计算机系统首选书目，是10余万程序员的共同选择。卡内基-梅隆、北京大学、清华大学、上海交通大学等国内外众多知名高校选用指定教材。从程序员视角全面剖析的实现细节，使读者深刻理解程序的行为，将所有计算机系统的相关知识融会贯通。</span></a><a class="item wiki" href="/wiki/computer-network/"><span class="title">计算机网络</span><span class="excerpt">本书是当前世界上最为流行的计算机网络教科书之一，采用了作者独创的自顶向下的方法来讲授计算机网络的原理及其协议，即从应用层协议开始沿协议栈向下讲解，强调应用层范例和应用编程接口，使读者尽快进入每天使用的应用程序环境之中进行学习和“创造”。本书的讲解以因特网为例，学以致用；注重教学法，深入浅出地重点讲解计算机网络的基本原理。</span></a></div></widget>
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+  
+  
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/cyber-book-market/">赛博书摊</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/">深入理解Nginx：模块开发与架构解析</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-03-07T08:03:15.284Z">2023-03-07</time></div></div>
+
+  <article class='md-text content wiki'>
+  <h1 class="article-title"><span>前言</span></h1>
+  <div class="tag-plugin note" color="yellow"><div class="body"><p>请注意：本资源来源于网络，如有侵权请联系删除</p></div></div>
+<h2 id="为什么要写这本书"><a href="#为什么要写这本书" class="headerlink" title="为什么要写这本书"></a>为什么要写这本书</h2><p>自第1版发行以来，笔者很欣慰得到了广大读者的认可。本书一直致力于说明开发Nginx模块的必备知识，然而由于Nginx功能繁多且性能强大，以致必须要了解的基本技能也很庞杂，而第1版成书匆忙，缺失了几个进阶的技巧描述（例如如何使用变量、slab共享内存等），因此决定在第1版的基础上进一步完善。<br><br>事实上，我们总能在nginx.conf配置文件中看到各种带着$符号的变量，只要修改带着变量的这一行行配置，就可以不用编译、部署而使得Nginx具备新功能，这些支持变量的Nginx模块提供了极为灵活的功能，第2版通过新增的第15章详细介绍了如何在模块中支持HTTP变量，包括如何在代码中使用其他Nginx模块提供的变量，以及如何定义新的变量供nginx.conf和其他第三方模块使用等。第16章介绍了slab共享内存，这是一套适用于小块内存快速分配释放的内存管理方式，它非常高效，分配与释放速度都是以纳秒计算的，常用于多个worker进程之间的通信，这比第14章介绍的原始的共享内存通信方式要先进很多。第16章不仅详细介绍了它的实现方式，也探讨了它的优缺点，比如，如果模块间要共享的单个对象常常要消耗数KB的空间，这时就需要修改它的实现（例如增大定义的slab页大小），以避免内存的浪费等。<br><br>Nginx内存池在第1版中只是简单带过，第2版中新增了8.7节介绍了内存池的实现细节，以帮助读者用好最基础的内存池功能。<br><br>此外，很多读者反馈需要结合TCP来谈谈Nginx，因此在9.10节中笔者试图在不陷入Linux内核细节的情况下，简要介绍了TCP以清晰了解Nginx的事件框架，了解Nginx的高并发能力。<br><br>这一版新增的第15章的样例代码可以从<a target="_blank" rel="noopener" href="http://nginx.taohui.org.cn/">http://nginx.taohui.org.cn</a> 站点上下载。<br><br>因笔者工作繁忙，以致第2版拖稿严重，读者的邮件也无法及时回复，非常抱歉。从这版开始会把曾经的回复整理后放在网站上，想必这比回复邮件要更有效率些。</p>
+<h2 id="读者对象"><a href="#读者对象" class="headerlink" title="读者对象"></a>读者对象</h2><p>本书适合以下读者阅读。</p>
+<ul>
+<li>对Nginx及如何将它搭建成一个高性能的Web服务器感兴趣的读者。 </li>
+<li>希望通过开发特定的HTTP模块实现高性能Web服务器的读者。 </li>
+<li>希望了解Nginx的架构设计，学习其怎样充分使用服务器上的硬件资源的读者。 </li>
+<li>了解如何快速定位、修复Nginx中深层次Bug的读者。 </li>
+<li>希望利用Nginx提供的框架，设计出任何基于TCP的、无阻塞的、易于扩展的服务器的读者。</li>
+</ul>
+<h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>如果仅希望了解怎样使用已有的Nginx功能搭建服务器，那么阅读本书不需要什么先决条件。但如果希望通过阅读本书的第二、第三两部分，来学习Nginx的模块开发和架构设计技巧时，则必须了解C语言的基本语法。在阅读本书第三部分时，需要读者对TCP有一个基本的了解，同时对Linux操作系统也应该有简单的了解。</p>
+<h2 id="如何阅读本书"><a href="#如何阅读本书" class="headerlink" title="如何阅读本书"></a>如何阅读本书</h2><p>我很希望将本书写成一本“step by step”式（循序渐进式）的书籍，因为这样最能节省读者的时间，然而，由于3个主要写作目的想解决的问题都不是那么简单，所以这本书只能做一个折中的处理。<br><br>在第一部分的前两章中，将只探讨如何使用Nginx这一个问题。阅读这一部分的读者不需要了解C语言，就可以学习如何部署Nginx，学习如何向其中添加各种官方、第三方的功能模块，如何通过修改配置文件来更改Nginx及各模块的功能，如何修改Linux操作系统上的参数来优化服务器性能，最终向用户提供企业级的Web服务器。这一部分介绍配置项的方式，更偏重于领着对Nginx还比较陌生的读者熟悉它，通过了解几个基本Nginx模块的配置修改方式，进而使读者可以通过查询官网、第三方网站来了解如何使用所有Nginx模块的用法。<br><br>在第二部分的第3章~第7章中，都是以例子来介绍HTTP模块的开发方式的，这里有些接近于“step by step”的学习方式，我在写作这一部分时，会通过循序渐进的方式使读者能够快速上手，同时会穿插着介绍其常见用法的基本原理。<br><br>在第三部分，将开始介绍Nginx的完整框架，阅读到这里将会了解第二部分中HTTP模块为何以此种方式开发，同时将可以轻易地开发Nginx模块。这一部分并不仅仅满足于阐述Nginx架构，而是会探讨其为何如此设计，只有这样才能抛开HTTP框架、邮件代理框架，实现一种新的业务框架、一种新的模块类型。<br><br>对于Nginx的使用还不熟悉的读者应当从第1章开始学习，前两章将帮助你快速了解Nginx。<br><br>使用过Nginx，但对如何开发Nginx的HTTP模块不太了解的读者可以直接从第3章开始学习，在这一章阅读完后，即可编写一个功能大致完整的HTTP模块。然而，编写企业级的模块必须阅读完第4章才能做到，这一章将会介绍编写产品线上服务器程序时必备的3个手段。第5章举例说明了两种编写复杂HTTP模块的方式，在第三部分会对这两个方式有进一步的说明。第6章介绍一种特殊的HTTP模块——HTTP过滤模块的编写方法。第7章探讨基础容器的用法，这同样是复杂模块的必备工具。<br><br>如果读者对于普通HTTP模块的编写已经很熟悉，想深入地实现更为复杂的HTTP模块，或者想了解邮件代理服务器的设计与实现，或者希望编写一种新的处理其他协议的模块，或者仅仅想了解Nginx的架构设计，都可以直接从第8章开始学习，这一章会从整体上系统介绍Nginx的模块式设计。第9章的事件框架是Nginx处理TCP的基础，这一章无法跳过。阅读第8章、第9章时可能会遇到许多第7章介绍过的容器，这时可以回到第7章查询其用法和意义。第10章~第12章在介绍HTTP框架，通过这3章的学习会对HTTP模块的开发有深入的了解，同时可以学习HTTP框架的优秀设计。第13章简单介绍了邮件代理服务器的设计，它近似于简化版的HTTP框架。第14章介绍了进程间同步的工具。第15章介绍了HTTP变量，包括如何使用已有变量、支持用户在nginx.conf中修改变量的值、支持其他模块开发者使用自己定义的变量等。第16章介绍了slab共享内存，该内存极为高效，可用于多个worker进程间的通信。<br><br>为了不让读者陷入代码的“汪洋大海”中，在本书中大量使用了图表，这样可以使读者快速、大体地了解流程和原理，在这基础上，如果读者还希望了解代码是如何实现的，可以针对性地阅读源代码中的相应方法。在代码的关键地方会通过添加注释的方式加以说明。希望这种方式能够帮助读者减少阅读花费的时间，更快、更好地把握住Nginx，同时深入到细节中。<br><br>写作本书第1版时，Nginx的最新稳定版本是1.0.14，所以当时是基于此版本来写作的。截止到第2版完成时，Nginx的稳定版本已经上升到了1.8.0。但这不会对本书的阅读造成困惑，笔者验证过示例代码，均可以运行在最新版本的Nginx中，这是因为本书主要是在介绍Nginx的基本框架代码，以及怎样使用这些框架代码开发新的Nginx模块。在这些基本框架代码中，Nginx一般不会做任何改变，否则已有的大量Nginx模块将无法工作，这种损失是不可承受的。而且Nginx框架为具体的功能模块提供了足够的灵活性，修改功能时很少需要修改框架代码。<br><br>Nginx是跨平台的服务器，然而这本书将只针对于最常见的Linux操作系统进行分析，这样做一方面是篇幅所限，另一方面则是本书的写作目的主要在于告诉大家如何基于Nginx编写代码，而不是怎样在一个具体的操作系统上修改配置使用Nginx。因此，即使本书以Linux系统为代表讲述Nginx，也不会影响使用其他操作系统的读者阅读，操作系统的差别相对于本书内容的影响实在是非常小。<br></p>
+<h2 id="勘误与支持"><a href="#勘误与支持" class="headerlink" title="勘误与支持"></a>勘误与支持</h2><p>由于作者的水平有限，加之编写的时间也很仓促，书中难免会出现一些错误或者不准确的地方，恳请读者批评指正。为此，我特意创建了一个在线支持与应急方案的二级站点：<a target="_blank" rel="noopener" href="http://nginx.weebly.com/">http://nginx.weebly.com</a> 。读者可以将书中的错误发布在Bug勘误表页面中，同时如果读者遇到任何问题，也可以访问Q&amp;A页面，我将尽量在线上为读者提供最满意的解答。书中的全部源文件都将发布在这个网站上，我也会将相应的功能更新及时发布出来。如果你有更多的宝贵意见，也欢迎你发送邮件至我的邮箱<a href="mailto:&#114;&#117;&#x73;&#x73;&#x65;&#108;&#108;&#116;&#97;&#x6f;&#x40;&#x66;&#x6f;&#x78;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;">&#114;&#117;&#x73;&#x73;&#x65;&#108;&#108;&#116;&#97;&#x6f;&#x40;&#x66;&#x6f;&#x78;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;</a>，期待能够听到读者的真挚反馈。</p>
+<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>我首先要感谢Igor Sysoev，他在Nginx设计上展现的功力令人折服，正是他的工作成果才有了本书诞生的意义。<br><br>lisa是机械工业出版社华章公司的优秀编辑，非常值得信任。在这半年的写作过程中，她花费了很多时间、精力来阅读我的书稿，指出了许多文字上和格式上的错误，她提出的建议都大大提高了本书的可读性。<br><br>在这半年时间里，一边工作一边写作给我带来了很大的压力，所以我要感谢我的父母在生活上对我无微不至的照顾，使我可以全力投入到写作中。繁忙的工作之余，写作又占用了休息时间的绝大部分，感谢我的太太毛业勤对我的体谅和鼓励，让我始终以高昂的斗志投入到本书的写作中。<br><br>感谢我工作中的同事们，正是在与他们一起战斗在一线的日子里，我才不断地对技术有新地感悟；正是那些“充满激情的岁月，才使得我越来越热爱服务器技术的开发。<br><br>谨以此书，献给我最亲爱的家人，以及众多热爱Nginx的朋友。—— 2015年10月 陶辉</p>
+
+  
+
+
+  </article>
+  
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/section_01">写在前面</a></div></section></div>
+
+  
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@anonymity</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.18.5';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.18.5';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
