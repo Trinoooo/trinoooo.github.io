@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.18.5">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>Kubernetes in Action：译者序 - trino的树洞</title>
+
+  
+    <meta name="description" content="早在2011年创业初期，七牛就决定使用GoLang作为主要开发语言，那时距离GoLang 1.0的正式发布还有将近一年的时间。当时我们就断定，在分布式时代，GoLang这种语言必定会大放异彩。今天，七牛的绝大多数线上服务都是用GoLang实现的，Golang帮助我们以最高的效率实现应用，快速响应客户需求。现在，我们也很幸运地看到当前最热门的开源项目如Docker、Kubernetes等，也都是基于">
+<meta property="og:type" content="website">
+<meta property="og:title" content="译者序">
+<meta property="og:url" content="https://trinoooo.github.io/wiki/kubernetes-in-action/preview/preview_01">
+<meta property="og:site_name" content="trino的树洞">
+<meta property="og:description" content="早在2011年创业初期，七牛就决定使用GoLang作为主要开发语言，那时距离GoLang 1.0的正式发布还有将近一年的时间。当时我们就断定，在分布式时代，GoLang这种语言必定会大放异彩。今天，七牛的绝大多数线上服务都是用GoLang实现的，Golang帮助我们以最高的效率实现应用，快速响应客户需求。现在，我们也很幸运地看到当前最热门的开源项目如Docker、Kubernetes等，也都是基于">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-09T05:03:27.246Z">
+<meta property="article:modified_time" content="2023-03-09T04:31:54.454Z">
+<meta property="article:author" content="Trino">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="trino的树洞" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+    <link rel="shortcut icon" href="https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/duck.svg">
+  
+
+  
+
+  
+
+
+  
+    
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;500&display=swap" rel="stylesheet">
+    
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='wiki'>
+    
+
+  
+
+
+
+
+<div class="widgets"><widget class="widget-wrapper logo-wrap wiki"><div class="widget-body"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/cyber-book-market"><svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>所有项目</a><a class="title" href="/wiki/kubernetes-in-action/"><div class="main" ff="title">Kubernetes in Action</div></a></div></widget>
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/kubernetes-in-action/" placeholder="在 /wiki/kubernetes-in-action/ 中搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">出版信息</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/#start"><span class="toc-text">推荐序</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/kubernetes-in-action/preview/preview_01"><span class="toc-text">译者序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_02"><span class="toc-text">前言</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_03"><span class="toc-text">致谢</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_04"><span class="toc-text">关于本书</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_05"><span class="toc-text">关于作者</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_06"><span class="toc-text">关于封面插画</span></a></div></div><div class="widget-header cap dis-select"><span class="name">第一部分</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/section_01/chapter_01"><span class="toc-text">Kubernetes介绍</span></a></div></div></widget>
+
+<widget class="widget-wrapper related"><div class="widget-header cap theme dis-select"><span class="name">更多计算机</span></div><div class="widget-body related-posts"><a class="item wiki" href="/wiki/computer-systems:a-programmer's-perspective/"><span class="title">深入理解计算机系统</span><span class="excerpt">《深入理解计算机系统》是理解计算机系统首选书目，是10余万程序员的共同选择。卡内基-梅隆、北京大学、清华大学、上海交通大学等国内外众多知名高校选用指定教材。从程序员视角全面剖析的实现细节，使读者深刻理解程序的行为，将所有计算机系统的相关知识融会贯通。</span></a><a class="item wiki" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/"><span class="title">深入理解Nginx：模块开发与架构解析</span><span class="excerpt">《深入理解Nginx》是2016年机械工业出版社出版的图书，作者是陶辉。本书通过还原Nginx设计思想，剖析Nginx架构来帮助读者快速高效开发HTTP模块。</span></a><a class="item wiki" href="/wiki/computer-network/"><span class="title">计算机网络</span><span class="excerpt">本书是当前世界上最为流行的计算机网络教科书之一，采用了作者独创的自顶向下的方法来讲授计算机网络的原理及其协议，即从应用层协议开始沿协议栈向下讲解，强调应用层范例和应用编程接口，使读者尽快进入每天使用的应用程序环境之中进行学习和“创造”。本书的讲解以因特网为例，学以致用；注重教学法，深入浅出地重点讲解计算机网络的基本原理。</span></a></div></widget>
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+  
+  
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/cyber-book-market/">书籍</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/kubernetes-in-action/">Kubernetes in Action</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-03-09T04:31:54.454Z">2023-03-09</time></div></div>
+
+  <article class='md-text content wiki'>
+  <h1 class="article-title"><span>译者序</span></h1>
+  <p>早在2011年创业初期，七牛就决定使用GoLang作为主要开发语言，那时距离GoLang 1.0的正式发布还有将近一年的时间。当时我们就断定，在分布式时代，GoLang这种语言必定会大放异彩。今天，七牛的绝大多数线上服务都是用GoLang实现的，Golang帮助我们以最高的效率实现应用，快速响应客户需求。现在，我们也很幸运地看到当前最热门的开源项目如Docker、Kubernetes等，也都是基于GoLang来实现的。<br><br>就像早期拥抱GoLang一样，七牛也是Docker和Kubernetes技术的坚定拥抱者和践行者。早在2014年，我们就基于Docker自研了一套容器集群管理系统，用于图片、音视频转码应用实例的资源调度，这套系统在线上运行了好几年，现在正逐渐被Kubernetes替代。<br><br>Docker和Kubernetes的出现，让我们发现了构建数据中心操作系统（DCOS）的可能性。Docker的轻量级、Kubernetes的灵活性和开放性，能让我们以API调用的方式来交付计算力（包括CPU、内存、网络、磁 盘等），能让业务应用摆脱传统资源交付方式和既往运维手段的束缚，更快捷地得到部署、升级和管理，业务迭代速度大大加快，资源利用率大幅提高。<br><br>早在几年前，我们在七牛就成立了专门的容器云团队，致力于打造更健壮、更易用的容器集群调度管理系统。现在，我们在七牛内部全面推广和应用Kubernetes，不仅把无状态服务运行在Kubernetes中，也把有状态服务比如数据库运行在Kubernetes中，正如使用GoLang提高了我们的开发效率一样，使用Kubernetes大大提高了我们的部署和运维效率。<br><br>在七牛，我们坚定地认为，Kubernetes会成为下一个Linux，但是管理的不再是单台机器，而是以DCOS的方式来管理整个数据中心。熟练地掌握和使用Kubernetes，将成为每个前后端工程师的必备技能，Kubernetes将成为发布前后端服务的标准途径。<br><br>这本书的翻译，我们集中了七牛容器云团队，以及其他七牛内部热心志愿者的力量，针对翻译的每个术语我们认真推敲，尽最大可能达 到“信”“达”“雅”的程度。鉴于水平有限，难免有纰漏，请读者谅解。<br><br>希望这本书能带领你进入Kubernetes的世界。<br><br>参与本书翻译的七牛容器团队成员有：卢兴铭（致谢词、第1章）、李雪瓅（第2章）、路涛（第3章）、孙讷敏（第4章）、刘岩（第5章）、孙毅飞（第6章）、林培裕（第7章）、周玉壁（第8章）、 陈凯俊（第9章）、杨冠军（第10章）、张钦尧（第11章）、况永巧 （第12章）、易弢（第13章）、王浩宇（第14章）、王雪瑞（第15章）、屈啸（第16章）、金鑫鑫（第17章）、陈忠杰（第18章）。由袁晓沛任翻译组组长，由李雪瓅、马力、冯义勇负责审校。<br><br>袁晓沛 容器计算部技术总监</p>
+
+  
+
+
+  </article>
+  
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/kubernetes-in-action/">推荐序</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/kubernetes-in-action/preview/preview_02">前言</a></div></section></div>
+
+  
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@anonymity</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.18.5';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.18.5';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>

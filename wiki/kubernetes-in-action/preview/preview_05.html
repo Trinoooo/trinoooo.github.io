@@ -20,21 +20,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
   
-  <title>深入理解Nginx：模块开发与架构解析：写在前面 - trino的树洞</title>
+  <title>Kubernetes in Action：关于作者 - trino的树洞</title>
 
   
-    <meta name="description" content="第一章 研究Nginx前的准备工作 第二章 Nginx的配置">
+    <meta name="description" content="马尔科·卢克沙（Marko Lukša）是一位具有20年开发Web应用、ERP系统、框架以及中间件软件经验的专业软件工程师。1985年，六岁的他在父亲给他买的一台二手ZX光谱计算机（ZX Spectrum computer）上开始了编程的第一步。小学时，他是全国Logo语言编程大赛的冠军，他在参加编程夏令营时学习了Pascal编程。从那时起，他开始使用各种编程语言开发软件。  他从高中在万维网的早">
 <meta property="og:type" content="website">
-<meta property="og:title" content="写在前面">
-<meta property="og:url" content="https://trinoooo.github.io/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/section_01">
+<meta property="og:title" content="关于作者">
+<meta property="og:url" content="https://trinoooo.github.io/wiki/kubernetes-in-action/preview/preview_05">
 <meta property="og:site_name" content="trino的树洞">
-<meta property="og:description" content="第一章 研究Nginx前的准备工作 第二章 Nginx的配置">
+<meta property="og:description" content="马尔科·卢克沙（Marko Lukša）是一位具有20年开发Web应用、ERP系统、框架以及中间件软件经验的专业软件工程师。1985年，六岁的他在父亲给他买的一台二手ZX光谱计算机（ZX Spectrum computer）上开始了编程的第一步。小学时，他是全国Logo语言编程大赛的冠军，他在参加编程夏令营时学习了Pascal编程。从那时起，他开始使用各种编程语言开发软件。  他从高中在万维网的早">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-07T07:59:33.066Z">
-<meta property="article:modified_time" content="2023-03-07T07:59:33.066Z">
+<meta property="og:image" content="https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/kubernetes-in-action/preview/preview_001.png">
+<meta property="article:published_time" content="2023-03-09T05:03:27.268Z">
+<meta property="article:modified_time" content="2023-03-09T05:01:10.879Z">
 <meta property="article:author" content="Trino">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/kubernetes-in-action/preview/preview_001.png">
   
   
 
@@ -80,13 +82,13 @@
 
 
 
-<div class="widgets"><widget class="widget-wrapper logo-wrap wiki"><div class="widget-body"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/cyber-book-market"><svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>所有项目</a><a class="title" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/"><div class="main" ff="title">深入理解Nginx：模块开发与架构解析</div></a></div></widget>
-<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/" placeholder="在 /wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/ 中搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+<div class="widgets"><widget class="widget-wrapper logo-wrap wiki"><div class="widget-body"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/cyber-book-market"><svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>所有项目</a><a class="title" href="/wiki/kubernetes-in-action/"><div class="main" ff="title">Kubernetes in Action</div></a></div></widget>
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/kubernetes-in-action/" placeholder="在 /wiki/kubernetes-in-action/ 中搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
 
 
-<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">出版信息</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/#start"><span class="toc-text">前言</span></a></div></div><div class="widget-header cap dis-select"><span class="name">第一部分 Nginx能帮我们做什么</span></div><div class="widget-body fs14"><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/section_01"><span class="toc-text">写在前面</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/chapter_01"><span class="toc-text">第一章 研究Nginx前的准备工作</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/chapter_02"><span class="toc-text">第二章 Nginx的配置</span></a></div></div></widget>
+<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">出版信息</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/#start"><span class="toc-text">推荐序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_01"><span class="toc-text">译者序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_02"><span class="toc-text">前言</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_03"><span class="toc-text">致谢</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_04"><span class="toc-text">关于本书</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/kubernetes-in-action/preview/preview_05"><span class="toc-text">关于作者</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_06"><span class="toc-text">关于封面插画</span></a></div></div><div class="widget-header cap dis-select"><span class="name">第一部分</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/section_01/chapter_01"><span class="toc-text">Kubernetes介绍</span></a></div></div></widget>
 
-<widget class="widget-wrapper related"><div class="widget-header cap theme dis-select"><span class="name">更多计算机</span></div><div class="widget-body related-posts"><a class="item wiki" href="/wiki/computer-systems:a-programmer's-perspective/"><span class="title">深入理解计算机系统</span><span class="excerpt">《深入理解计算机系统》是理解计算机系统首选书目，是10余万程序员的共同选择。卡内基-梅隆、北京大学、清华大学、上海交通大学等国内外众多知名高校选用指定教材。从程序员视角全面剖析的实现细节，使读者深刻理解程序的行为，将所有计算机系统的相关知识融会贯通。</span></a><a class="item wiki" href="/wiki/computer-network/"><span class="title">计算机网络</span><span class="excerpt">本书是当前世界上最为流行的计算机网络教科书之一，采用了作者独创的自顶向下的方法来讲授计算机网络的原理及其协议，即从应用层协议开始沿协议栈向下讲解，强调应用层范例和应用编程接口，使读者尽快进入每天使用的应用程序环境之中进行学习和“创造”。本书的讲解以因特网为例，学以致用；注重教学法，深入浅出地重点讲解计算机网络的基本原理。</span></a></div></widget>
+<widget class="widget-wrapper related"><div class="widget-header cap theme dis-select"><span class="name">更多计算机</span></div><div class="widget-body related-posts"><a class="item wiki" href="/wiki/computer-systems:a-programmer's-perspective/"><span class="title">深入理解计算机系统</span><span class="excerpt">《深入理解计算机系统》是理解计算机系统首选书目，是10余万程序员的共同选择。卡内基-梅隆、北京大学、清华大学、上海交通大学等国内外众多知名高校选用指定教材。从程序员视角全面剖析的实现细节，使读者深刻理解程序的行为，将所有计算机系统的相关知识融会贯通。</span></a><a class="item wiki" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/"><span class="title">深入理解Nginx：模块开发与架构解析</span><span class="excerpt">《深入理解Nginx》是2016年机械工业出版社出版的图书，作者是陶辉。本书通过还原Nginx设计思想，剖析Nginx架构来帮助读者快速高效开发HTTP模块。</span></a><a class="item wiki" href="/wiki/computer-network/"><span class="title">计算机网络</span><span class="excerpt">本书是当前世界上最为流行的计算机网络教科书之一，采用了作者独创的自顶向下的方法来讲授计算机网络的原理及其协议，即从应用层协议开始沿协议栈向下讲解，强调应用层范例和应用编程接口，使读者尽快进入每天使用的应用程序环境之中进行学习和“创造”。本书的讲解以因特网为例，学以致用；注重教学法，深入浅出地重点讲解计算机网络的基本原理。</span></a></div></widget>
 </div>
 
 
@@ -98,21 +100,20 @@
 
   
   
-<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/cyber-book-market/">赛博书摊</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/">深入理解Nginx：模块开发与架构解析</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-03-07T07:59:33.066Z">2023-03-07</time></div></div>
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/cyber-book-market/">书籍</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/kubernetes-in-action/">Kubernetes in Action</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-03-09T05:01:10.879Z">2023-03-09</time></div></div>
 
   <article class='md-text content wiki'>
-  <h1 class="article-title"><span>写在前面</span></h1>
-  <ul>
-<li>第一章 研究Nginx前的准备工作</li>
-<li>第二章 Nginx的配置</li>
-</ul>
+  <h1 class="article-title"><span>关于作者</span></h1>
+  <p>马尔科·卢克沙（Marko Lukša）是一位具有20年开发Web应用、ERP系统、框架以及中间件软件经验的专业软件工程师。1985年，六岁的他在父亲给他买的一台二手ZX光谱计算机（ZX Spectrum computer）上开始了编程的第一步。小学时，他是全国Logo语言编程大赛的冠军，他在参加编程夏令营时学习了Pascal编程。从那时起，他开始使用各种编程语言开发软件。</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/kubernetes-in-action/preview/preview_001.png"/></div></div>
+<p>他从高中在万维网的早期就开始搭建动态网站。在斯洛文尼亚卢布尔雅那大学（University of Ljubljana）学习计算机科学期间，他在当地一家公司为医疗和电信行业开发软件。最终，他成为了Red Hat的员工，最初开发了谷歌应用程序引擎（Google App Engine）API的开源实现，该API底层使用了Red Hat的JBoss中间件产品。他还参与了CDI&#x2F;Weld、Infinispan&#x2F;JBoss DataGrid等项目。<br><br>自2014年底以来，他一直是Red Hat Cloud Enablement团队的一员，在该团队中，他的职责包括了解Kubernetes和相关技术的最新发展趋势，保证公司的软件中间件充分利用Kubernetes和OpenShift的特性。</p>
 
   
 
 
   </article>
   
-<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/">前言</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/chapter_01">第一章 研究Nginx前的准备工作</a></div></section></div>
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/kubernetes-in-action/preview/preview_04">关于本书</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/kubernetes-in-action/preview/preview_06">关于封面插画</a></div></section></div>
 
   
 

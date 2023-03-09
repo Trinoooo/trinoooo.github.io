@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.18.5">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>Kubernetes in Action：关于本书 - trino的树洞</title>
+
+  
+    <meta name="description" content="本书旨在让你能够熟练使用Kubernetes。它介绍了在Kubernetes中有效地开发和运行应用所需的几乎所有概念。在深入研究Kubernetes之前，本书概述了Docker等容器技术，包括如何构建容器，以便即使以前没有使用过这些技术的读者也可以使用它们。然后，它会慢慢带你从基本概念到实现原理了解大部分的Kubernetes知识。 本书适合谁本书主要关注应用开发人员，但也从操作的角度概述了应用的">
+<meta property="og:type" content="website">
+<meta property="og:title" content="关于本书">
+<meta property="og:url" content="https://trinoooo.github.io/wiki/kubernetes-in-action/preview/preview_04">
+<meta property="og:site_name" content="trino的树洞">
+<meta property="og:description" content="本书旨在让你能够熟练使用Kubernetes。它介绍了在Kubernetes中有效地开发和运行应用所需的几乎所有概念。在深入研究Kubernetes之前，本书概述了Docker等容器技术，包括如何构建容器，以便即使以前没有使用过这些技术的读者也可以使用它们。然后，它会慢慢带你从基本概念到实现原理了解大部分的Kubernetes知识。 本书适合谁本书主要关注应用开发人员，但也从操作的角度概述了应用的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-09T05:03:27.262Z">
+<meta property="article:modified_time" content="2023-03-09T04:54:39.167Z">
+<meta property="article:author" content="Trino">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="trino的树洞" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+    <link rel="shortcut icon" href="https://hexo-duration.oss-cn-hangzhou.aliyuncs.com/duck.svg">
+  
+
+  
+
+  
+
+
+  
+    
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;500&display=swap" rel="stylesheet">
+    
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='wiki'>
+    
+
+  
+
+
+
+
+<div class="widgets"><widget class="widget-wrapper logo-wrap wiki"><div class="widget-body"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/cyber-book-market"><svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>所有项目</a><a class="title" href="/wiki/kubernetes-in-action/"><div class="main" ff="title">Kubernetes in Action</div></a></div></widget>
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/kubernetes-in-action/" placeholder="在 /wiki/kubernetes-in-action/ 中搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">出版信息</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/#start"><span class="toc-text">推荐序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_01"><span class="toc-text">译者序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_02"><span class="toc-text">前言</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_03"><span class="toc-text">致谢</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/kubernetes-in-action/preview/preview_04"><span class="toc-text">关于本书</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E4%B9%A6%E9%80%82%E5%90%88%E8%B0%81"><span class="toc-text">本书适合谁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E4%BB%A3%E7%A0%81"><span class="toc-text">关于代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E8%80%85%E6%9C%8D%E5%8A%A1"><span class="toc-text">读者服务</span></a></li></ol></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_05"><span class="toc-text">关于作者</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/preview/preview_06"><span class="toc-text">关于封面插画</span></a></div></div><div class="widget-header cap dis-select"><span class="name">第一部分</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/kubernetes-in-action/section_01/chapter_01"><span class="toc-text">Kubernetes介绍</span></a></div></div></widget>
+
+<widget class="widget-wrapper related"><div class="widget-header cap theme dis-select"><span class="name">更多计算机</span></div><div class="widget-body related-posts"><a class="item wiki" href="/wiki/computer-systems:a-programmer's-perspective/"><span class="title">深入理解计算机系统</span><span class="excerpt">《深入理解计算机系统》是理解计算机系统首选书目，是10余万程序员的共同选择。卡内基-梅隆、北京大学、清华大学、上海交通大学等国内外众多知名高校选用指定教材。从程序员视角全面剖析的实现细节，使读者深刻理解程序的行为，将所有计算机系统的相关知识融会贯通。</span></a><a class="item wiki" href="/wiki/understanding-nginx:modules-development-and-architecture-resolving(second-edition)/"><span class="title">深入理解Nginx：模块开发与架构解析</span><span class="excerpt">《深入理解Nginx》是2016年机械工业出版社出版的图书，作者是陶辉。本书通过还原Nginx设计思想，剖析Nginx架构来帮助读者快速高效开发HTTP模块。</span></a><a class="item wiki" href="/wiki/computer-network/"><span class="title">计算机网络</span><span class="excerpt">本书是当前世界上最为流行的计算机网络教科书之一，采用了作者独创的自顶向下的方法来讲授计算机网络的原理及其协议，即从应用层协议开始沿协议栈向下讲解，强调应用层范例和应用编程接口，使读者尽快进入每天使用的应用程序环境之中进行学习和“创造”。本书的讲解以因特网为例，学以致用；注重教学法，深入浅出地重点讲解计算机网络的基本原理。</span></a></div></widget>
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+  
+  
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/cyber-book-market/">书籍</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/kubernetes-in-action/">Kubernetes in Action</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-03-09T04:54:39.167Z">2023-03-09</time></div></div>
+
+  <article class='md-text content wiki'>
+  <h1 class="article-title"><span>关于本书</span></h1>
+  <p>本书旨在让你能够熟练使用Kubernetes。它介绍了在Kubernetes中有效地开发和运行应用所需的几乎所有概念。<br><br>在深入研究Kubernetes之前，本书概述了Docker等容器技术，包括如何构建容器，以便即使以前没有使用过这些技术的读者也可以使用它们。然后，它会慢慢带你从基本概念到实现原理了解大部分的Kubernetes知识。</p>
+<h2 id="本书适合谁"><a href="#本书适合谁" class="headerlink" title="本书适合谁"></a>本书适合谁</h2><p>本书主要关注应用开发人员，但也从操作的角度概述了应用的管理。它适合任何对在多服务器上运行和管理容器化应用感兴趣的人。<br><br>对于希望学习容器技术以及大规模的容器编排的人，无论是初学者还是高级软件工程师都将得到在Kubernetes环境中开发、容器化和运行应用所需的专业知识。<br><br>阅读本书不需要预先了解容器或Kubernetes技术。本书以渐进的方式展开主题，不会使用让非专家开发者难以理解的应用源代码。<br><br>读者至少应该具备编程、计算机网络和运行Linux基本命令的基础知识，并了解常用的计算机协议，如HTTP协议。<br><br>本书分为三个部分，涵盖18个章节。<br><br>第一部分简要地介绍Docker和Kubernetes、如何设置Kubernetes集群，以及如何在集群中运行一个简单的应用。它包括两章：</p>
+<ul>
+<li>第1章解释了什么是Kubernetes、Kubernetes的起源，以及它如何帮助解决当今大规模应用管理的问题。</li>
+<li>第2章是关于如何构建容器镜像并在Kubernetes集群中运行的实践教程。还解释了如何运行本地单节点Kubernetes集群，以及在云上运行适当的多节点集群。</li>
+</ul>
+<p>第二部分介绍了在Kubernetes中运行应用必须理解的关键概念。本章内容如下：</p>
+<ul>
+<li>第3章介绍了Kubernetes的基本构建模块——pod，并解释了如何通过标签组织pod和其他Kubernetes对象。</li>
+<li>第4章将向你介绍Kubernetes如何通过自动重启容器来保持应用程序的健康。还展示了如何正确地运行托管的pod，水平伸缩它们，使它们能够抵抗集群节点的故障，并在未来或定期运行它们。</li>
+<li>第5章介绍了pod如何向运行在集群内外的客户端暴露它们提供的服务，还展示了运行在集群中的pod是如何发现和访问集群内外的服务的。</li>
+<li>第6章解释了在同一个pod中运行的多个容器如何共享文件，以及如何管理持久化存储并使得pod可以访问。</li>
+<li>第7章介绍了如何将配置数据和敏感信息（如凭据）传递给运行在pod中的应用。</li>
+<li>第8章描述了应用如何获得正在运行的Kubernetes环境的信息，以及如何通过与Kubernetes通信来更改集群的状态。</li>
+<li>第9章介绍了Deployment的概念，并解释了在Kubernetes环境中运行和更新应用的正确方法。</li>
+</ul>
+<p>第三部分深入研究了Kubernetes集群的内部，介绍了一些额外的概念，并从更高的角度回顾了在前两部分中所学到的所有内容。这是最后一组章节：</p>
+<ul>
+<li>第11章深入Kubernetes的底层，解释了组成Kubernetes集群的所有组件，以及每个组件的作用。它还解释了pod如何通过网络进行通信，以及服务如何跨多个pod形成负载平衡。</li>
+<li>第12章解释了如何保护Kubernetes API服务器，以及通过扩展集群使用身份验证和授权。</li>
+<li>第13章介绍了pod如何访问节点的资源，以及集群管理员如何防止pod访问节点的资源。</li>
+<li>第14章深入了解限制每个应用程序允许使用的计算资源，配置应用的QoS（Quality of Service）保证，以及监控各个应用的资源使用情况。 还会介绍如何防止用户消耗太多资源。</li>
+<li>第15章讨论了如何通过配置Kubernetes来自动伸缩应用运行的副本数，以及在当前集群节点数量不能接受任何新增应用时，如何对集群进行扩容。</li>
+<li>第16章介绍了如何确保pod只被调度到特定的节点，或者如何防止它们被调度到其他节点。还介绍了如何确保pod被调度在一起，或者如何防止它们调度在一起。</li>
+<li>第17章介绍了如何开发应用程序并部署在集群中。还介绍了如何配置开发和测试工作流来提高开发效率。</li>
+<li>第18章介绍了如何使用自己的自定义对象扩展Kubernetes，以及其他人是如何开发并创建企业级应用平台的。</li>
+</ul>
+<p>随着章节的深入，不仅可以了解单个构建Kubernetes的模块，还可以逐步增加对使用kubectl命令行工具的理解。</p>
+<h2 id="关于代码"><a href="#关于代码" class="headerlink" title="关于代码"></a>关于代码</h2><p>虽然这本书没有包含很多实际的源代码，但是包含了许多YAML格式的Kubernetes资源清单，以及shell命令及其输出。所有这些都是用等宽字体显示的，以便与普通文本相互区分。<br><br>shell命令大部分以粗体文字展示，以便与命令的输出清晰地区分，但为了表示强调有时只有命令的最重要的部分或是命令输出的一部分是粗体的。在大多数情况下，为了适应图书有限的版面空间，命令输出会被重新格式化。此外，由于Kubernetes的命令行工具kubectl不断发展更新，新版本输出的信息可能会比书中显示的更多。如果输出结果不完全一致，请不要感到困惑。<br><br>代码清单有时会包括续行标记（➥）表示一行文字延续到下一行。代码清单还可能包括注释，这些注释用于解释最重要的部分。<br><br>在文本段落包含一些常见的元素，如Pod、ReplicationController、ReplicaSet、DaemonSet等，为了避免代码字体的过度复杂，便于阅读，都以常规字体显示。在某些地方，大写字母开头的“Pod”表示Pod资源，小写则表示实际运行的容器组。<br><br>本书中的所有示例都使用谷歌Kubernetes引擎（Google Kubernetes Engine），在Kubernetes 1.8版本和Minikube的本地集群进行了运行测试。完整的源代码和YAML清单可以在<a target="_blank" rel="noopener" href="https://github.com/luksa/kubernetes-in-action%E6%89%BE%E5%88%B0%EF%BC%8C%E6%88%96%E8%80%85%E4%BB%8E%E5%87%BA%E7%89%88%E5%95%86%E7%9A%84%E7%BD%91%E7%AB%99www.manning.com/books/kubernetes-in-action%E4%B8%AD%E4%B8%8B%E8%BD%BD%E3%80%82">https://github.com/luksa/kubernetes-in-action找到，或者从出版商的网站www.manning.com/books/kubernetes-in-action中下载。</a><br><br>其他线上资源<br><br>可以在下面的网址中找到许多额外的Kubernetes信息：</p>
+<ul>
+<li>Kubernetes官方网站：<a target="_blank" rel="noopener" href="https://kubernetes.io/">https://kubernetes.io</a> </li>
+<li>经常发布有用信息的Kubernetes博客：<a target="_blank" rel="noopener" href="http://blog.kubernetes.io/">http://blog.kubernetes.io</a> </li>
+<li>Kubernetes社区的Slack频道：<a target="_blank" rel="noopener" href="http://slack.k8s.io/">http://slack.k8s.io</a> </li>
+<li>Kubernetes以及Cloud Native Computing Foundation的YouTube频道： <ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCZ2bu0qutTOM0tHYa_jkIwg">https://www.youtube.com/channel/UCZ2bu0qutTOM0tHYa_jkIwg</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCvqbFHwN-nwalWPjPUKpvTA">https://www.youtube.com/channel/UCvqbFHwN-nwalWPjPUKpvTA</a></li>
+</ul>
+</li>
+<li>为了获得对于单个话题更深入的理解或者贡献Kubernetes项目，可以查看Kubernetes特别兴趣小组（SIGs）:<a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/wiki/Special-InterestGroups-(SIGs)%E3%80%82">https://github.com/kubernetes/kubernetes/wiki/Special-InterestGroups-(SIGs)。</a></li>
+</ul>
+<p>最后，由于Kubernetes是一个开源项目，Kubernetes源码本身包含大量的信息。可以访问Kubernetes和相关的仓库：<a target="_blank" rel="noopener" href="https://github.com/kubernetes/%E3%80%82">https://github.com/kubernetes/。</a></p>
+<h2 id="读者服务"><a href="#读者服务" class="headerlink" title="读者服务"></a>读者服务</h2><p>轻松注册成为博文视点社区用户( <a target="_blank" rel="noopener" href="http://www.broadview.com.cn/">www.broadview.com.cn</a> )，扫码直达本书页面。<br><br>提交勘误：您对书中内容的修改意见可在 提交勘误 处提交，若被采纳，将获赠博文视点社区积分（在您购买电子书时，积分可用来抵扣相应金额）。<br><br>交流互动：在页面下方读者评论 处留下您的疑问或观点，与我们和其他读者一同学习交流。<br><br>页面入口：<a target="_blank" rel="noopener" href="http://www.broadview.com.cn/34995">http://www.broadview.com.cn/34995</a></p>
+
+  
+
+
+  </article>
+  
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/kubernetes-in-action/preview/preview_03">致谢</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/kubernetes-in-action/preview/preview_05">关于作者</a></div></section></div>
+
+  
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@anonymity</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.18.5';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.18.5';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
