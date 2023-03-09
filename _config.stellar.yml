@@ -3,7 +3,7 @@ sidebar:
     title: Trino的树洞
   menu:
     post: "[文章](/)"
-    wiki: "[赛博书摊](/cyber-book-market/)"
+    wiki: "[书籍](/cyber-book-market/)"
     about: "[关于](/about/)"
   widgets:
     home: search, welcome, recent # for home

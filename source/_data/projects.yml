@@ -12,6 +12,13 @@
     '出版信息': [0,0]
     '第一部分 Nginx能帮我们做什么': [1,100]
   description: 《深入理解Nginx》是2016年机械工业出版社出版的图书，作者是陶辉。本书通过还原Nginx设计思想，剖析Nginx架构来帮助读者快速高效开发HTTP模块。
+Kubernetes in Action:
+  title: Kubernetes in Action
+  tags: 计算机
+  sections:
+    '出版信息': [0,6]
+    '第一部分': [7,100]
+  description: 本书主要讲解如何在Kubernetes中部署分布式容器应用。本书开始部分概要介绍了Docker和Kubernetes的由来和发展，然后通过在Kubernetes中部署一个应用程序，一点点增加功能，逐步加深我们对于Kubernetes架构的理解和操作的实践。在本书的后面部分，也可以学习一些高阶的主题，比如监控、调试及伸缩。
 计算机网络:
   title: 计算机网络
   tags: 计算机
